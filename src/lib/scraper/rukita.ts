@@ -8,6 +8,6 @@ export async function scrapeRukitaLink(url: string) {
   try {
 
   } catch(error: any) {
-    throw new Error(error.message);
+    console.log(`Failed to scrape website: ${error.message}`);
   }
 }
