@@ -1,50 +1,65 @@
 "use server";
 
-import puppeteer from "puppeteer";
-
-export async function scrapeMamikosLink(url: string) {
-  if (!url) return;
-
+export async function scrapeMamikosLink(url: string, page: any) {
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-    });
-    const page = await browser.newPage();
-
-    await page.goto(url, { waitUntil: "networkidle2" });
-
     await page.waitForSelector(".content-container");
     await page.waitForSelector(".detail-kost-overview__availability-text, .detail-kost-overview__availability-wrapper");
 
-    const contentList = await page.evaluate(() => {
-      const allImages = Array.from(document.querySelectorAll("#detailPhotoContainer img")).map(img => img.getAttribute('src') || img.getAttribute('data-src'));
-      const staticImages = allImages.filter(src => src && !src.includes('data:image/gif') && !src.includes('/general/img/pictures/placeholder'));
+    const data = await page.evaluate(() => {
+      const staticImages: string[] = [];
 
-      const title = document.querySelector("p.detail-title__room-name");
-      const location = document.querySelector("p.detail-kost-overview__area-text");
-      const rating = document.querySelector("p.detail-kost-overview__rating-text");
-      const price = document.querySelector("div.card-price__price p");
-      const gender = document.querySelector("span.detail-kost-overview__gender-box");
+      // Select all images and filter out placeholders
+      const allImages = Array.from(document.querySelectorAll("#detailPhotoContainer img"))
+                             .map(img => img.getAttribute('src') || img.getAttribute('data-src'));
+      staticImages.push(...allImages.filter(src => src && !src.includes('data:image/gif') && !src.includes('/general/img/pictures/placeholder')));
 
-      const availabilityElement = document.querySelector(".detail-kost-overview__availability-text") || 
+      // Select other elements
+      const titleElement = document.querySelector("p.detail-title__room-name");
+      const locationElement = document.querySelector("p.detail-kost-overview__area-text");
+      const ratingElement = document.querySelector("p.detail-kost-overview__rating-text");
+      const priceElement = document.querySelector("div.card-price__price p");
+      const originalPriceElement = document.querySelector("span.rc-price__additional-discount-price");
+      const genderElement = document.querySelector("span.detail-kost-overview__gender-box");
+
+      // Extract text content from elements
+      const title = titleElement?.textContent?.trim() ?? null;
+      const location = locationElement?.textContent?.trim() ?? null;
+      const rating = ratingElement?.textContent?.trim() ?? null;
+      const price = priceElement?.textContent?.trim() ?? null;
+      const originalPrice = originalPriceElement?.textContent?.trim() ?? null;
+      const gender = genderElement?.textContent?.trim() ?? null;
+
+      // Determine availability
+      const availabilityElement = document.querySelector(".detail-kost-overview__availability-text") ||
                                   document.querySelector(".detail-kost-overview__availability-wrapper");
-
-      const availabilityText = availabilityElement ? availabilityElement.textContent.trim().toLowerCase() : '';
+      const availabilityText = availabilityElement?.textContent?.trim().toLowerCase() ?? '';
       const isAvailable = availabilityText.includes("tersisa") || availabilityText.includes("banyak");
+
       return {
         images: staticImages,
-        title: title ? title.textContent.trim() : null,
-        location: location ? location.textContent.trim() : null,
-        rating: rating ? rating.textContent.trim() : null,
-        price: price ? price.textContent.trim() : null,
-        gender: gender ? gender.textContent.trim() : null,
+        title,
+        location,
+        rating,
+        price,
+        originalPrice,
+        gender,
         isAvailable,
       };
     });
 
-    console.log(contentList);
-    await browser.close();
+    console.log(data);
+    return data;
   } catch (error: any) {
     console.log(`Failed to scrape website: ${error.message}`);
+    return { // Return an empty object or handle error cases as needed
+      images: [],
+      title: null,
+      location: null,
+      rating: null,
+      price: null,
+      originalPrice: null,
+      gender: null,
+      isAvailable: false,
+    };
   }
 }

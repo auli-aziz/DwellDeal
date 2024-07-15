@@ -5,14 +5,19 @@ import React, { FormEvent, useState } from "react";
 const isValidLink = (input: string) => {
   const url = new URL(input);
   const host = url.hostname;
-  if (
-    host.includes("mamikos.com") ||
-    host.includes("mamikos.")
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  const path = url.pathname;
+
+  const validPatterns = [
+    "mamikos.com/room",
+    "cove.id/en/listings",
+    "cove.id/listings",
+    "rukita.co/place"
+  ];
+
+  return validPatterns.some(pattern => {
+    const [domain, subpath] = pattern.split('/', 2);
+    return host.includes(domain) && path.includes(subpath);
+  });
 };
 
 const SearchBar = () => {
@@ -29,7 +34,7 @@ const SearchBar = () => {
       if (validation) {
         const data = await scrapeAndStore(link);
       } else {
-        alert("Please enter a valid site link")
+        alert("Please enter a valid site link");
       }
     } catch (error: any) {
       console.log(error.message);
