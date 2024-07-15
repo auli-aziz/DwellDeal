@@ -12,7 +12,7 @@ export async function scrapeCoveLink(url: string, page: any) {
       if (image2.length > 0) staticImages.push(...image2.map(image => image.src));
 
       const titleElement = document.querySelector('h2.mt-2.text-3xl.font-black.lowercase.text-neutral-600.tablet\\:text-4xl');
-      const locationElement = document.querySelector("span.font-medium.text-neutral-600");
+      const locationElement = document.querySelector("div.mt-6.flex.items-center.gap-3 span.font-medium.text-neutral-600");
       const typeElement = document.querySelector('h1.text-2xl.font-bold.text-neutral-600 a');
       const priceElement = document.querySelector("div.font-black.leading-none.text-4xl");
       const originalPriceElement = document.querySelector("div.text-base.line-through");
