@@ -3,21 +3,32 @@ import { scrapeAndStore } from "@/lib/actions";
 import React, { FormEvent, useState } from "react";
 
 const isValidLink = (input: string) => {
-  const url = new URL(input);
-  const host = url.hostname;
-  const path = url.pathname;
+  try {
+    const url = new URL(input);
+    const host = url.hostname;
+    const path = url.pathname;
 
-  const validPatterns = [
-    "mamikos.com/room",
-    "cove.id/en/listings",
-    "cove.id/listings",
-    "rukita.co/place"
-  ];
+    const validPatterns = [
+      "mamikos.com/room",
+      "cove.id/en/listings",
+      "cove.id/listings",
+      "rukita.co/place"
+    ];
 
-  return validPatterns.some(pattern => {
-    const [domain, subpath] = pattern.split('/', 2);
-    return host.includes(domain) && path.includes(subpath);
-  });
+    const invalidPattern = /apartemen/;
+
+    const matchesValidPattern = validPatterns.some(pattern => {
+      const [domain, subpath] = pattern.split('/', 2);
+      return host.includes(domain) && path.includes(subpath);
+    });
+
+    console.log(path);    
+    const matchesInvalidPattern = path.match(invalidPattern);
+
+    return matchesValidPattern && !matchesInvalidPattern;
+  } catch (error) {
+    return false;
+  }
 };
 
 const SearchBar = () => {
