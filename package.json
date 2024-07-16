@@ -14,6 +14,8 @@
     "next": "14.2.4",
     "proxy-chain": "^2.5.1",
     "puppeteer": "^22.12.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",

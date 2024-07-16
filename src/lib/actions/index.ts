@@ -1,5 +1,5 @@
 "use server";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-extra";
 import { site } from "@/lib/utils/website";
 
 import { scrapeMamikosLink } from "../scraper/mamikos";
