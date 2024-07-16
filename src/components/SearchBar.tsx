@@ -1,5 +1,4 @@
 "use client";
-import { scrapeAndStore } from "@/lib/actions";
 import React, { FormEvent, useState } from "react";
 
 const isValidLink = (input: string) => {
@@ -22,7 +21,6 @@ const isValidLink = (input: string) => {
       return host.includes(domain) && path.includes(subpath);
     });
 
-    console.log(path);    
     const matchesInvalidPattern = path.match(invalidPattern);
 
     return matchesValidPattern && !matchesInvalidPattern;
@@ -37,18 +35,29 @@ const SearchBar = () => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const validation = isValidLink(link);
+    if(!isValidLink(link)) {
+      alert("Please enter a valid link");
+      return;
+    }
 
     try {
       setIsLoading(true);
+      const response = await fetch("/api/scrape", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: link }),
+      });
 
-      if (validation) {
-        const data = await scrapeAndStore(link);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
       } else {
-        alert("Please enter a valid site link");
+        console.log("Failed to fetch data");
       }
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      console.error("Error scraping:", error);
     } finally {
       setIsLoading(false);
     }

@@ -16,7 +16,7 @@ export async function scrapeRukitaLink(url: string, page: any) {
       const rooms = typeElements?.map(room => room.textContent?.trim()) ?? '';
 
       const roomImages = Array.from(document.querySelectorAll(""));
-      roomImages.forEach(roomImage => );
+      roomImages.forEach(roomImage => roomImage);
 
       rooms.map(room => results.push({room, images}));
       
