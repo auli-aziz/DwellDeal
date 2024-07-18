@@ -19,6 +19,8 @@ export async function scrapeRukitaLink(url: string, page: any) {
 
       elements.forEach((element) => {
         const image = element.querySelector('[data-testid="Image"]')?.getAttribute('src');
+        const roomImages = [image, ...images];
+
         const titleElement = element.querySelector('.box2 h3');
         const priceElement = element.querySelector('p.price.text-md.font-medium.lg\\:text-right.lg\\:text-base.lg\\:text-xl');
         const originalPriceElement = element.querySelector('p.price.text-sm.line-through.lg\\:text-right.lg\\:text-md');
@@ -27,13 +29,19 @@ export async function scrapeRukitaLink(url: string, page: any) {
         const price = priceElement?.textContent?.trim() ?? '';
         const originalPrice = originalPriceElement?.textContent?.trim() ?? '';
 
+        const availabilityElement = element.querySelector("p.ml-2.text-sm.text-neutral-100");
+        const availabilityText = availabilityElement?.textContent?.trim().toLowerCase() ?? "";
+        const isNotAvailable = availabilityText.includes("dari") || availabilityText.includes("tidak");
+
         data.push({
-          image,
+          images: roomImages,
           title,
+          location,
+          rating: null,
           price,
           originalPrice,
-          location,
           gender,
+          isAvailable: !isNotAvailable
         });
       });
 
