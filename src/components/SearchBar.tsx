@@ -56,6 +56,8 @@ const SearchBar = () => {
       } else {
         console.log("Failed to fetch data");
       }
+
+      
     } catch (error) {
       console.error("Error scraping:", error);
     } finally {

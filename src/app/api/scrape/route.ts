@@ -4,7 +4,7 @@ import stealth from "puppeteer-extra-plugin-stealth";
 import { scrapeMamikosLink } from "../../../lib/scraper/mamikos";
 import { scrapeCoveLink } from "../../../lib/scraper/cove";
 import { scrapeRukitaLink } from "../../../lib/scraper/rukita";
-import { site } from "@/lib/utils/website";
+import { site } from "@/lib/utils/constants";
 
 // puppeteer.use(stealth());
 

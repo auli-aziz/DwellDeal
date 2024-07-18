@@ -1,8 +1,15 @@
 "use server"
 
-export async function scrapeRukitaLink(url: string, page: any) {
+import { Page } from "puppeteer";
+import { extractPrice } from "../utils/functions";
+
+export async function scrapeRukitaLink(url: string, page: Page) {
   try {
-    const items = await page.evaluate(() => {
+    const extractPriceFunc = extractPrice.toString();
+
+    const data = await page.evaluate((extractPriceString) => {
+      const extractPrice = new Function("return " + extractPriceString)();
+
       const data: any[] = [];
       const elements = document.querySelectorAll('[data-testid="AssetVariantItem"]');
 
@@ -34,21 +41,23 @@ export async function scrapeRukitaLink(url: string, page: any) {
         const isNotAvailable = availabilityText.includes("dari") || availabilityText.includes("tidak");
 
         data.push({
+          site: "ruktia",
           images: roomImages,
           title,
           location,
           rating: null,
-          price,
-          originalPrice,
+          price: extractPrice(price),
+          originalPrice: extractPrice(originalPrice),
           gender,
           isAvailable: !isNotAvailable
         });
       });
 
       return data;
-    });
+    }, extractPriceFunc);
 
-    console.log(items);
+    console.log(data);
+    return data;
   } catch (error: any) {
     console.log(`Failed to scrape website: ${error.message}`);
   }

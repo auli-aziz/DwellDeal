@@ -1,13 +1,20 @@
 "use server";
 
-export async function scrapeMamikosLink(url: string, page: any) {
+import { Page } from "puppeteer";
+import { extractPrice } from "../utils/functions";
+
+export async function scrapeMamikosLink(url: string, page: Page) {
   try {
+    const extractPriceFunc = extractPrice.toString();
+    
     await page.waitForSelector(".content-container");
     await page.waitForSelector(
       ".detail-kost-overview__availability-text, .detail-kost-overview__availability-wrapper"
     );
 
-    const data = await page.evaluate(() => {
+    const data = await page.evaluate((extractPriceString) => {
+      const extractPrice = new Function("return " + extractPriceString)();
+
       const staticImages: string[] = [];
 
       const allImages = Array.from(
@@ -36,12 +43,12 @@ export async function scrapeMamikosLink(url: string, page: any) {
         "span.detail-kost-overview__gender-box"
       );
 
-      const title = titleElement?.textContent?.trim() ?? null;
-      const location = locationElement?.textContent?.trim() ?? null;
-      const rating = ratingElement?.textContent?.trim() ?? null;
-      const price = priceElement?.textContent?.trim() ?? null;
-      const originalPrice = originalPriceElement?.textContent?.trim() ?? null;
-      const gender = genderElement?.textContent?.trim() ?? null;
+      const title = titleElement?.textContent?.trim() ?? "";
+      const location = locationElement?.textContent?.trim() ?? "";
+      const rating = ratingElement?.textContent?.trim() ?? "";
+      const price = priceElement?.textContent?.trim() ?? "";
+      const originalPrice = originalPriceElement?.textContent?.trim() ?? "";
+      const gender = genderElement?.textContent?.trim() ?? "";
 
       const availabilityElement =
         document.querySelector(".detail-kost-overview__availability-text") ||
@@ -54,31 +61,22 @@ export async function scrapeMamikosLink(url: string, page: any) {
 
       return [
         {
+          site: "mamikos",
           images: staticImages,
           title,
           location,
           rating,
-          price,
-          originalPrice,
+          price: extractPrice(price),
+          originalPrice: extractPrice(originalPrice),
           gender,
           isAvailable,
         },
       ];
-    });
+    }, extractPriceFunc);
 
     console.log(data);
     return data;
   } catch (error: any) {
     console.log(`Failed to scrape website: ${error.message}`);
-    return {
-      images: [],
-      title: null,
-      location: null,
-      rating: null,
-      price: null,
-      originalPrice: null,
-      gender: null,
-      isAvailable: false,
-    };
   }
 }

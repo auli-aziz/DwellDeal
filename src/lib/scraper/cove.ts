@@ -1,8 +1,15 @@
 "use server";
 
-export async function scrapeCoveLink(url: string, page: any) {
+import { Page } from "puppeteer";
+import { extractPrice } from "../utils/functions";
+
+export async function scrapeCoveLink(url: string, page: Page) {
   try {
-    const data = await page.evaluate(() => {
+    const extractPriceFunc = extractPrice.toString();
+
+    const data = await page.evaluate((extractPriceString) => {
+      const extractPrice = new Function("return " + extractPriceString)();
+
       const staticImages: string[] = [];
 
       const image1 = document.querySelector(
@@ -28,13 +35,13 @@ export async function scrapeCoveLink(url: string, page: any) {
         "div.font-black.leading-none.text-4xl"
       );
       const originalPriceElement = document.querySelector(
-        "div.text-base.line-through"
+        "div.my-4 div.px-4 section.flex.flex-col.gap-1.text-sm.font-bold div.flex.items-center.gap-2 div.flex.items-baseline.gap-1.text-xs.font-bold.text-neutral-400 div.text-base.line-through"
       );
 
       const title = titleElement?.textContent?.trim() ?? "";
       const location = locationElement?.textContent?.trim() ?? "";
       const price = priceElement?.textContent?.trim() ?? "";
-      const originalPrice = originalPriceElement?.textContent?.trim() ?? null;
+      const originalPrice = originalPriceElement?.textContent?.trim() ?? "";
 
       const availabilityElement = document.querySelector(
         ".flex.h-6.items-center.overflow-hidden.text-sm.font-semibold.text-white.w-fit.rounded-br-lg.bg-cove-teal"
@@ -46,19 +53,21 @@ export async function scrapeCoveLink(url: string, page: any) {
 
       return [
         {
+          site: "cove",
           images: staticImages,
           title,
           location,
           rating: null,
-          price,
-          originalPrice,
+          price: extractPrice(price),
+          originalPrice: extractPrice(originalPrice),
           gender: "campur",
           isAvailable,
         },
       ];
-    });
+    }, extractPriceFunc);
 
     console.log(data);
+    return data;
   } catch (error: any) {
     console.log(`Failed to scrape website: ${error.message}`);
   }
