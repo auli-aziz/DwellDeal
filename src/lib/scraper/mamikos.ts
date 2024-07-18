@@ -61,12 +61,12 @@ export async function scrapeMamikosLink(url: string, page: Page) {
 
       return [
         {
-          site: "mamikos",
+          url,
           images: staticImages,
           title,
           location,
           rating,
-          price: extractPrice(price),
+          currentPrice: extractPrice(price),
           originalPrice: extractPrice(originalPrice),
           gender,
           isAvailable,

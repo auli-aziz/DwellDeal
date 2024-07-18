@@ -41,12 +41,12 @@ export async function scrapeRukitaLink(url: string, page: Page) {
         const isNotAvailable = availabilityText.includes("dari") || availabilityText.includes("tidak");
 
         data.push({
-          site: "ruktia",
+          url,
           images: roomImages,
           title,
           location,
           rating: null,
-          price: extractPrice(price),
+          currentPrice: extractPrice(price),
           originalPrice: extractPrice(originalPrice),
           gender,
           isAvailable: !isNotAvailable

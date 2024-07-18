@@ -53,12 +53,12 @@ export async function scrapeCoveLink(url: string, page: Page) {
 
       return [
         {
-          site: "cove",
+          url,
           images: staticImages,
           title,
           location,
           rating: null,
-          price: extractPrice(price),
+          currentPrice: extractPrice(price),
           originalPrice: extractPrice(originalPrice),
           gender: "campur",
           isAvailable,
