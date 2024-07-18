@@ -8,12 +8,10 @@ export async function scrapeMamikosLink(url: string, page: any) {
     const data = await page.evaluate(() => {
       const staticImages: string[] = [];
 
-      // Select all images and filter out placeholders
       const allImages = Array.from(document.querySelectorAll("#detailPhotoContainer img"))
                              .map(img => img.getAttribute('src') || img.getAttribute('data-src'));
       staticImages.push(...allImages.filter(src => src && !src.includes('data:image/gif') && !src.includes('/general/img/pictures/placeholder')));
 
-      // Select other elements
       const titleElement = document.querySelector("p.detail-title__room-name");
       const locationElement = document.querySelector("p.detail-kost-overview__area-text");
       const ratingElement = document.querySelector("p.detail-kost-overview__rating-text");
@@ -21,7 +19,6 @@ export async function scrapeMamikosLink(url: string, page: any) {
       const originalPriceElement = document.querySelector("span.rc-price__additional-discount-price");
       const genderElement = document.querySelector("span.detail-kost-overview__gender-box");
 
-      // Extract text content from elements
       const title = titleElement?.textContent?.trim() ?? null;
       const location = locationElement?.textContent?.trim() ?? null;
       const rating = ratingElement?.textContent?.trim() ?? null;
@@ -29,7 +26,6 @@ export async function scrapeMamikosLink(url: string, page: any) {
       const originalPrice = originalPriceElement?.textContent?.trim() ?? null;
       const gender = genderElement?.textContent?.trim() ?? null;
 
-      // Determine availability
       const availabilityElement = document.querySelector(".detail-kost-overview__availability-text") ||
                                   document.querySelector(".detail-kost-overview__availability-wrapper");
       const availabilityText = availabilityElement?.textContent?.trim().toLowerCase() ?? '';

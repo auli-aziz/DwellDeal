@@ -2,42 +2,46 @@
 
 export async function scrapeRukitaLink(url: string, page: any) {
   try {
-    const data = await page.evaluate(() => {
-      const results = [];
-      
-      const images = [] as string[];
-      const mainImage = document.querySelector("div.group.aspect-h-5.aspect-w-6.col-span-2.row-span-2.overflow-hidden.rounded-l-lg img") as HTMLImageElement;
-      const smallImages = Array.from(document.querySelectorAll("div.group.aspect-h-\\[29\\].aspect-w-\\[35\\].col-span-1.overflow-hidden.sm\\:relative.sm\\:h-full img")) as HTMLImageElement[];
-      
-      images.push(mainImage.src);
-      images.push(...smallImages.map(img => img.src));
+    const items = await page.evaluate(() => {
+      const data: any[] = [];
+      const elements = document.querySelectorAll('[data-testid="AssetVariantItem"]');
 
-      const typeElements = Array.from(document.querySelectorAll("div.box2.p-4.md\\:px-0 h3.mb-1.text-md.font-medium"));
-      const rooms = typeElements?.map(room => room.textContent?.trim()) ?? '';
+      const images: string[] = [];
 
-      const roomImages = Array.from(document.querySelectorAll(""));
-      roomImages.forEach(roomImage => roomImage);
+      const houseImages = Array.from(document.querySelectorAll('div.group.aspect-h-\\[29\\].aspect-w-\\[35\\].col-span-1.overflow-hidden.sm\\:relative.sm\\:h-full img')) as HTMLImageElement[];
+      images.push(...houseImages.map(img => img.src));
 
-      rooms.map(room => results.push({room, images}));
-      
-      // const titleElement = document.querySelector("");
-      // const locationElement = document.querySelector("");
-      // const genderElement = document.querySelector("");
-      // const priceElement = document.querySelector("");
-      
-      // const title = titleElement?.textContent?.trim() ?? '';
-      // const location = locationElement?.textContent?.trim() ?? '';
-      // const gender = genderElement?.textContent?.trim() ?? 'campur';
-      // const price = priceElement?.textContent?.trim() ?? '';
-      // const originalPrice = priceElement?.textContent?.trim() ?? '';
+      const locationElement = document.querySelector('.mt-2.text-sm.text-neutral-80.md\\:text-lg');
+      const location = locationElement?.textContent?.trim() ?? '';
 
+      const genderElement = document.querySelector('.ml-1.flex-1.truncate.text-sm.md\\:text-md span:nth-child(2) span:last-child');
+      const gender = genderElement?.textContent?.trim() ?? 'campur';
 
+      elements.forEach((element) => {
+        const image = element.querySelector('[data-testid="Image"]')?.getAttribute('src');
+        const titleElement = element.querySelector('.box2 h3');
+        const priceElement = element.querySelector('p.price.text-md.font-medium.lg\\:text-right.lg\\:text-base.lg\\:text-xl');
+        const originalPriceElement = element.querySelector('p.price.text-sm.line-through.lg\\:text-right.lg\\:text-md');
 
-      return results;
-    })
+        const title = titleElement?.textContent?.trim() ?? '';
+        const price = priceElement?.textContent?.trim() ?? '';
+        const originalPrice = originalPriceElement?.textContent?.trim() ?? '';
 
-    console.log(data);
-  } catch(error: any) {
+        data.push({
+          image,
+          title,
+          price,
+          originalPrice,
+          location,
+          gender,
+        });
+      });
+
+      return data;
+    });
+
+    console.log(items);
+  } catch (error: any) {
     console.log(`Failed to scrape website: ${error.message}`);
   }
 }

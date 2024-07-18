@@ -13,13 +13,11 @@ export async function scrapeCoveLink(url: string, page: any) {
 
       const titleElement = document.querySelector('h2.mt-2.text-3xl.font-black.lowercase.text-neutral-600.tablet\\:text-4xl');
       const locationElement = document.querySelector("div.mt-6.flex.items-center.gap-3 span.font-medium.text-neutral-600");
-      const typeElement = document.querySelector('h1.text-2xl.font-bold.text-neutral-600 a');
       const priceElement = document.querySelector("div.font-black.leading-none.text-4xl");
       const originalPriceElement = document.querySelector("div.text-base.line-through");
 
       const title = titleElement?.textContent?.trim() ?? '';
       const location = locationElement?.textContent?.trim() ?? '';
-      const type = typeElement?.textContent?.trim() ?? '';
       const price = priceElement?.textContent?.trim() ?? '';
       const originalPrice = originalPriceElement?.textContent?.trim() ?? null;
 
@@ -30,7 +28,6 @@ export async function scrapeCoveLink(url: string, page: any) {
       return {
         images: staticImages,
         title,
-        type,
         location,
         rating: null,
         price,
