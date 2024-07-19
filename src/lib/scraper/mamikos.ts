@@ -12,7 +12,7 @@ export async function scrapeMamikosLink(url: string, page: Page) {
       ".detail-kost-overview__availability-text, .detail-kost-overview__availability-wrapper"
     );
 
-    const data = await page.evaluate((extractPriceString) => {
+    const data = await page.evaluate((extractPriceString, pageUrl) => {
       const extractPrice = new Function("return " + extractPriceString)();
 
       const staticImages: string[] = [];
@@ -61,18 +61,18 @@ export async function scrapeMamikosLink(url: string, page: Page) {
 
       return [
         {
-          url,
+          url: pageUrl,
           images: staticImages,
           title,
           location,
-          rating,
+          rating: Number(rating),
           currentPrice: extractPrice(price),
           originalPrice: extractPrice(originalPrice),
           gender,
           isAvailable,
         },
       ];
-    }, extractPriceFunc);
+    }, extractPriceFunc, url);
 
     console.log(data);
     return data;

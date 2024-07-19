@@ -7,7 +7,7 @@ export async function scrapeCoveLink(url: string, page: Page) {
   try {
     const extractPriceFunc = extractPrice.toString();
 
-    const data = await page.evaluate((extractPriceString) => {
+    const data = await page.evaluate((extractPriceString, pageUrl) => {
       const extractPrice = new Function("return " + extractPriceString)();
 
       const staticImages: string[] = [];
@@ -53,18 +53,18 @@ export async function scrapeCoveLink(url: string, page: Page) {
 
       return [
         {
-          url,
+          url: pageUrl,
           images: staticImages,
           title,
           location,
-          rating: null,
+          rating: 5,
           currentPrice: extractPrice(price),
           originalPrice: extractPrice(originalPrice),
           gender: "campur",
           isAvailable,
         },
       ];
-    }, extractPriceFunc);
+    }, extractPriceFunc, url);
 
     console.log(data);
     return data;

@@ -7,7 +7,7 @@ export async function scrapeRukitaLink(url: string, page: Page) {
   try {
     const extractPriceFunc = extractPrice.toString();
 
-    const data = await page.evaluate((extractPriceString) => {
+    const data = await page.evaluate((extractPriceString, pageUrl) => {
       const extractPrice = new Function("return " + extractPriceString)();
 
       const data: any[] = [];
@@ -41,11 +41,11 @@ export async function scrapeRukitaLink(url: string, page: Page) {
         const isNotAvailable = availabilityText.includes("dari") || availabilityText.includes("tidak");
 
         data.push({
-          url,
+          url: pageUrl,
           images: roomImages,
           title,
           location,
-          rating: null,
+          rating: 5,
           currentPrice: extractPrice(price),
           originalPrice: extractPrice(originalPrice),
           gender,
@@ -54,7 +54,7 @@ export async function scrapeRukitaLink(url: string, page: Page) {
       });
 
       return data;
-    }, extractPriceFunc);
+    }, extractPriceFunc, url);
 
     console.log(data);
     return data;

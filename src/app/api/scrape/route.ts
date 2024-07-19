@@ -9,7 +9,7 @@ import { connectToDB } from '@/config/mongoose';
 import Room from "@/models/room.model"
 
 export async function POST(req: NextRequest) {
-  const { url } = await req.json();
+  const { url } = await req.json();  
 
   if (!url) {
     return NextResponse.json({ error: "Missing URL parameter" }, { status: 400 });
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
   let browser;
   try {
-    connectToDB();
+    await connectToDB();
 
     browser = await puppeteer.launch({
       headless: true,
@@ -46,25 +46,25 @@ export async function POST(req: NextRequest) {
         throw new Error("Unsupported site");
     }
 
-    if(scrapedRooms) {
-      for(const scrapedRoom of scrapedRooms) {
-        const existingRoom = await Room.findOne({ url: scrapedRoom.url });
+    if (scrapedRooms && scrapedRooms.length > 0) {
+      for (const scrapedRoom of scrapedRooms) {
+        const existingRoom = await Room.findOne({ url: scrapedRoom.url, title: scrapedRoom.title });
         
         let room;
   
-        if(existingRoom) {
-          const updatedPriceHistory: any = [
+        if (existingRoom) {
+          const updatedPriceHistory = [
             ...existingRoom.priceHistory,
-            { price: scrapedRoom.currentPrice }
-          ]
-          
+            { price: scrapedRoom.currentPrice, date: new Date() }
+          ];
+
           room = {
             ...scrapedRoom,
             priceHistory: updatedPriceHistory,
             lowestPrice: getLowestPrice(updatedPriceHistory),
             highestPrice: getHighestPrice(updatedPriceHistory),
             averagePrice: getAveragePrice(updatedPriceHistory),
-          }
+          };
         } else {
           const priceHistory = [{ price: scrapedRoom.currentPrice, date: new Date() }];
 
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
         }
 
         await Room.findOneAndUpdate(
-          { url: scrapedRoom.url },
+          { url: scrapedRoom.url, title: scrapedRoom.title },
           room,
           { upsert: true, new: true }
         );
@@ -90,6 +90,6 @@ export async function POST(req: NextRequest) {
     console.error(`Failed to scrape: ${error.message}`);
     return NextResponse.json({ error: "Failed to scrape" }, { status: 500 });
   } finally {
-    if(browser) await browser.close();
+    if (browser) await browser.close();
   }
 }
