@@ -1,5 +1,5 @@
 import HeroCarousel from "@/components/HeroCarousel";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/ScrapeBar";
 import React from "react";
 
 const Home = () => {

@@ -1,24 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Telex, Exo, Mukta } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const inter = Inter({
+const telex = Telex({
   subsets: ["latin"],
-  weight: ["100", "300", "500", "700", "900"],
-  variable: "--font-inter",
+  weight: ["400"],
+  variable: "--font-telex",
 });
 
-const montserrat = Montserrat({
+const exo = Exo({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-montserrat",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-exo",
+});
+
+const mukta = Mukta({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-exo",
 });
 
 export const metadata: Metadata = {
   title: "DwellDeal",
   description:
-    "Track the cheapest and most comfortable boarding house and apartments with ease",
+    "Track the cheapest and most comfortable boarding houses with ease",
 };
 
 export default function RootLayout({
@@ -28,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable}`}>
+      <body className={`${telex.variable} ${exo.variable} ${mukta.variable}`}>
         <Navbar />
         <main>{children}</main>
       </body>
