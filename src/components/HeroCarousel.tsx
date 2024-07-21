@@ -13,7 +13,7 @@ const heroImages = [
 
 const HeroCarousel = () => {
   return (
-    <div className='w-[450px] h-fit border-2'>
+    <div className='w-[505px] h-[455px] border-2'>
       <Carousel
         showThumbs={false}
         autoPlay
@@ -24,14 +24,16 @@ const HeroCarousel = () => {
       >
         {
           heroImages.map((image) => (
-            <Image 
-              key={image.alt}
-              alt={image.alt}
-              src={image.imgUrl}
-              width={484}
-              height={484}
-              className='w-full h-full object-cover'
-            />
+            <div key={image.alt} className="relative w-full h-full">
+              <Image 
+                key={image.alt}
+                alt={image.alt}
+                src={image.imgUrl}
+                width={505}
+                height={505}
+                className='w-full h-full object-cover'
+              />
+            </div>
           ))
         }
       </Carousel>

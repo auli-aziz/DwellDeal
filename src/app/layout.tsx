@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
-import { Telex, Exo, Mukta } from "next/font/google";
+import { Montserrat, Averia_Libre, Shanti } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const telex = Telex({
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400"],
-  variable: "--font-telex",
+  variable: "--font-montserrat",
 });
 
-const exo = Exo({
+const averia = Averia_Libre({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-exo",
+  weight: ["300", "400", "700"],
+  variable: "--font-averia",
 });
 
-const mukta = Mukta({
+const shanti = Shanti({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
-  variable: "--font-exo",
+  weight: ["400"],
+  variable: "--font-shanti",
 });
 
 export const metadata: Metadata = {
   title: "DwellDeal",
   description:
-    "Track the cheapest and most comfortable boarding houses with ease",
+    "Track the cheapest and most comfortable boarding houses with ease from multiple websites",
 };
 
 export default function RootLayout({
@@ -33,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${telex.variable} ${exo.variable} ${mukta.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${averia.variable} ${shanti.variable}`}>
+      <body>
         <Navbar />
         <main>{children}</main>
       </body>

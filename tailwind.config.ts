@@ -14,14 +14,19 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        inter: ["var(--font-inter)"],
         montserrat: ["var(--font-montserrat)"],
+        averia: ["var(--font-averia)"],
+        shanti: ["var(--font-shanti)"],
       },
       colors: {
-        primary: {}
-      }
+        primary: "#9E896A",
+        secondary: "#C7B198",
+        tertiary: "#DFD3C3",
+        neutral: "#F0ECE3"
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

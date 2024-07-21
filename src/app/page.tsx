@@ -1,24 +1,19 @@
 import HeroCarousel from "@/components/HeroCarousel";
-import SearchBar from "@/components/ScrapeBar";
 import React from "react";
 
 const Home = () => {
   return (
-    <div className="w-90% h-fit md:px-20 py-24 border-2">
+    <div className="w-90% h-fit md:px-15 py-14 border-2">
       <section className="flex flex-wrap justify-around items-center gap-10">
         <HeroCarousel />
-        <div className="">
-          <div className="w-96 flex flex-col justify-center gap-5">
-            <h3 className="font-roboto text-blue-900 font-bold text-4xl">
-              Dwell Today!
+          <div className="w-[445px] flex flex-col justify-center gap-5">
+            <h3 className="font-exo  text-5xl">
+              Get the best deals with <span className="text-blue-900 font-semibold">DwellDeal</span>!
             </h3>
-            <p className="font-normal font-inter text-xl">
-              Rent the best properties
-              <br /> for the lowest prices
+            <p className="font-averia text-xl">
+              Find and compare the best properties for the lowest prices from different websites
             </p>
           </div>
-          <SearchBar />
-        </div>
       </section>
     </div>
   );
