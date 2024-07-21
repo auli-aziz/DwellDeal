@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import auth from "../../../public/assets/images/auth.png";
+import AuthCard from '@/components/auth/AuthCard';
 
 const Auth = () => {
   
@@ -14,11 +15,9 @@ const Auth = () => {
           className="w-full h-full object-cover object-right-top"
         />
       </section>
-      <section className="flex bg-gradient-to-l from-neutral via-neutral to-transparent absolute h-screen right-0 md:w-[1000px] lg:w-[1100px]">
+      <section className="bg-gradient-to-l from-neutral via-neutral to-transparent absolute h-screen right-0 md:w-[1000px] lg:w-[1100px] hidden sm:block">
         <div className="flex justify-end h-full w-full px-10 pb-10 pt-16">
-          <div className="w-[560px] border-2 border-black">
-            
-          </div>
+          <AuthCard />
         </div>
       </section>
     </div>
