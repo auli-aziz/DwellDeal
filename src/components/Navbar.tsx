@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <>
       {pathname !== "/auth" ? (
-        <header className="w-full h-fit py-3 md:px-20 shadow-lg">
+        <header className="w-full h-fit py-3 px-10 shadow-lg z-10">
           <nav className="w-full flex justify-between items-center">
             <Logo />
             <Link
@@ -23,7 +23,7 @@ const Navbar = () => {
           </nav>
         </header>
       ) : (
-        <header className="w-full h-fit py-3 md:px-20 absolute">
+        <header className="w-full h-fit py-3 px-10 absolute z-10">
           <Logo />
         </header>
       )}

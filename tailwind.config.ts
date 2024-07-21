@@ -22,7 +22,8 @@ const config: Config = {
         primary: "#9E896A",
         secondary: "#C7B198",
         tertiary: "#DFD3C3",
-        neutral: "#F0ECE3"
+        neutral: "#F0ECE3",
+        dark: "#565151"
       },
     },
   },
