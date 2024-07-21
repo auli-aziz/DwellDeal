@@ -1,27 +1,33 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import logo from "../../public/assets/icons/logo.png";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import Logo from "./Logo";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   return (
-    <header className="w-full h-fit py-3 md:px-20 shadow-lg">
-      <nav className="w-full flex justify-between items-center">
-        <Link href="/" className="flex items-center">
-          <Image
-            src={logo}
-            alt="Logo"
-            width={32}
-            height={32}
-          />
-          <p className="font-assistant font-semibold text-black">
-            Dwell<span className="font-bold text-primary">Deal</span>
-          </p>
-        </Link>
-        <button className="font-exo font-400 text-white text-base bg-gray-700 py-1 px-7 rounded-md hover:bg-gray-800">Login</button>
-      </nav>
-    </header>
+    <>
+      {pathname !== "/auth" ? (
+        <header className="w-full h-fit py-3 md:px-20 shadow-lg">
+          <nav className="w-full flex justify-between items-center">
+            <Logo />
+            <Link
+              href={"/auth"}
+              className="font-shanti text-sm font-regular text-white bg-primary py-1 px-7 rounded-2xl hover:scale-105"
+            >
+              Login
+            </Link>
+          </nav>
+        </header>
+      ) : (
+        <header className="w-full h-fit py-3 md:px-20 absolute">
+          <Logo />
+        </header>
+      )}
+    </>
   );
 };
 

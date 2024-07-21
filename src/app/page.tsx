@@ -10,7 +10,7 @@ const Home = () => {
             <h3 className="font-exo  text-5xl">
               Get the best deals with <span className="text-blue-900 font-semibold">DwellDeal</span>!
             </h3>
-            <p className="font-averia text-xl">
+            <p className="font-montserrat text-xl">
               Find and compare the best properties for the lowest prices from different websites
             </p>
           </div>
