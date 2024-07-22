@@ -13,7 +13,7 @@ const heroImages = [
 
 const HeroCarousel = () => {
   return (
-    <div className='w-[505px] h-[455px] border-2'>
+    <div className='w-[455px] h-fit border-2'>
       <Carousel
         showThumbs={false}
         autoPlay

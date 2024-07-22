@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${averia.variable} ${shanti.variable}`}>
-      <body>
+      <body className="border-0 w-full h-fit">
         <Navbar />
         <main>{children}</main>
       </body>

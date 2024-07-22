@@ -11,13 +11,13 @@ const isValidLink = (input: string) => {
       "mamikos.com/room",
       "cove.id/en/listings",
       "cove.id/listings",
-      "rukita.co/place"
+      "rukita.co/place",
     ];
 
     const invalidPattern = /apartemen/;
 
-    const matchesValidPattern = validPatterns.some(pattern => {
-      const [domain, subpath] = pattern.split('/', 2);
+    const matchesValidPattern = validPatterns.some((pattern) => {
+      const [domain, subpath] = pattern.split("/", 2);
       return host.includes(domain) && path.includes(subpath);
     });
 
@@ -35,7 +35,7 @@ const SearchBar = () => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if(!isValidLink(link)) {
+    if (!isValidLink(link)) {
       alert("Please enter a valid link");
       return;
     }
@@ -56,7 +56,6 @@ const SearchBar = () => {
       } else {
         console.log("Failed to fetch data");
       }
-
     } catch (error) {
       console.error("Error scraping:", error);
     } finally {
@@ -65,23 +64,25 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="my-5 flex gap-3" onSubmit={handleSubmit}>
+    <form className="my-5 flex" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Search Now"
-        className="p-1 border-2 border-gray-200 rounded-md w-96"
+        placeholder="Enter your link"
+        className="p-3 border-t-2 border-l-2 border-b-2 border-primary rounded-l-3xl w-96"
         value={link}
         onChange={(event) => setLink(event.target.value)}
       />
-      <button
-        type="submit"
-        disabled={link === "" || isLoading}
-        className={`py-2 px-5 h-full rounded-md bg-gray-800 border-2 border-gray-800 text-white font-bold ${
-          link === "" ? "" : "hover:bg-gray-900"
-        }`}
-      >
-        Search
-      </button>
+      <div className="border-b-2 border-primary rounded-r-full font-shanti">
+        <button
+          type="submit"
+          disabled={link === "" || isLoading}
+          className={`py-3 px-5 h-full rounded-r-3xl rounded-bl-3xl bg-primary text-white font-bold ${
+            link === "" ? "" : "hover:bg-gray-900"
+          }`}
+        >
+          Scrape
+        </button>
+      </div>
     </form>
   );
 };
