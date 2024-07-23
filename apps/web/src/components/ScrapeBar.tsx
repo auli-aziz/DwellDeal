@@ -1,6 +1,6 @@
 "use client";
 import React, { FormEvent, useState } from "react";
-import { isValidLink } from "@web/lib/utils/functions";
+import { isValidLink } from "@server/utils/functions";
 import { useScrape } from "@web/hooks/useScrape";
 
 const SearchBar = () => {
