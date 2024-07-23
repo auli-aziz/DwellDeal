@@ -24,7 +24,7 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="my-5 flex w-8/12" onSubmit={handleSubmit}>
+    <form className="my-5 flex w-11/12 lg:w-8/12" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter your link"

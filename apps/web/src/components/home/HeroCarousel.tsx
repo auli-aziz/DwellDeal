@@ -31,7 +31,7 @@ const HeroCarousel = () => {
   }, [nextSlide]);
 
   return (
-    <div className="relative overflow-hidden w-[600px] h-[420px] border-2 rounded-l-3xl">
+    <div className="relative overflow-hidden lg:w-[600px] sm:w-[320px] w-[90vw] lg:h-[420px] h-[220px] border-2 md:rounded-bl-3xl md:rounded-tr-none rounded-tl-3xl rounded-tr-3xl">
       <div className="overflow-hidden">
         <div
           className={`flex transition ease-out duration-40`}
