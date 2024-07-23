@@ -6,7 +6,7 @@ import Hero from "@web/components/home/Hero";
 
 const Home = async () => {
   return (
-    <div className="px-3">
+    <div className="px-3 pt-14">
       <Hero />
       <section className="relative w-full h-fit flex flex-col items-center">
         <div className="flex flex-col items-center pt-5 pb-3 font-montserrat text-dark gap-2">
@@ -21,7 +21,9 @@ const Home = async () => {
       <section className="flex flex-col items-center my-10">
         <h3 className="font-montserrat font-bold text-dark lg:text-3xl text-2xl">Recent</h3>
         <div className="grid">
-          
+        <p className="font-regular lg:text-xl pt-5 text-base text-center font-montserrat text-dark">
+            No scraping not been made.
+          </p>
         </div>
       </section>
     </div>

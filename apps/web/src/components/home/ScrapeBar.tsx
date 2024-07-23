@@ -36,7 +36,7 @@ const SearchBar = () => {
         <button
           type="submit"
           disabled={link === "" || isLoading}
-          className={`py-3 px-5 h-full rounded-r-3xl rounded-bl-3xl bg-primary text-white font-bold ${
+          className={`py-3 px-5 h-full rounded-r-3xl rounded-bl-3xl button-gradient text-white font-bold ${
             link === "" ? "" : "hover:bg-gray-900"
           }`}
         >

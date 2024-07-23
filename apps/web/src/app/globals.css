@@ -13,4 +13,8 @@
   .website-logo {
     @apply relative w-5 h-5 lg:w-8 lg:h-8;
   }
+
+  .button-gradient {
+    @apply bg-gradient-to-r from-secondary via-primary to-dark
+  }
 }
