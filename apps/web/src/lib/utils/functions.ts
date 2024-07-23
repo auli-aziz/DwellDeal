@@ -53,3 +53,31 @@ export const getAveragePrice = (priceList: PriceHistoryItem[]) => {
 
   return averagePrice;
 }
+
+export const isValidLink = (input: string): boolean => {
+  try {
+    const url = new URL(input);
+    const host = url.hostname;
+    const path = url.pathname;
+
+    const validPatterns = [
+      "^mamikos\\.com/room",
+      "^cove\\.id/en/listings",
+      "^cove\\.id/listings",
+      "^rukita\\.co/place",
+    ].map(pattern => new RegExp(pattern, 'i'));
+
+    const invalidPattern = /apartemen/i; 
+
+    const matchesValidPattern = validPatterns.some((regex) => {
+      const fullPath = `${host}${path}`;
+      return regex.test(fullPath);
+    });
+
+    const matchesInvalidPattern = invalidPattern.test(path);
+
+    return matchesValidPattern && !matchesInvalidPattern;
+  } catch (error) {
+    return false;
+  }
+};
