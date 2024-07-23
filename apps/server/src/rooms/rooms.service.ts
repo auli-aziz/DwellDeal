@@ -5,17 +5,13 @@ import { RoomInterface } from '@server/models/room.model';
 import { LinkDto } from '@server/utils/dto';
 import puppeteer from 'puppeteer';
 import { site } from '@server/utils/constants';
+import scraper from '@server/utils/scraper';
 import {
   checkHostname,
   getAveragePrice,
   getHighestPrice,
   getLowestPrice,
 } from '@server/utils/functions';
-import {
-  scrapeCoveLink,
-  scrapeMamikosLink,
-  scrapeRukitaLink,
-} from '@server/utils/scraper';
 
 @Injectable()
 export class RoomsService {
@@ -46,13 +42,13 @@ export class RoomsService {
       let scrapedRooms;
       switch (hostname) {
         case site.mamikos:
-          scrapedRooms = await scrapeMamikosLink(url, page);
+          scrapedRooms = await scraper.scrapeMamikosLink(url, page);
           break;
         case site.cove:
-          scrapedRooms = await scrapeCoveLink(url, page);
+          scrapedRooms = await scraper.scrapeCoveLink(url, page);
           break;
         case site.rukita:
-          scrapedRooms = await scrapeRukitaLink(url, page);
+          scrapedRooms = await scraper.scrapeRukitaLink(url, page);
           break;
         default:
           throw new Error('Unsupported site');
