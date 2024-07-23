@@ -1,37 +1,11 @@
 "use client";
 import React, { FormEvent, useState } from "react";
-
-const isValidLink = (input: string) => {
-  try {
-    const url = new URL(input);
-    const host = url.hostname;
-    const path = url.pathname;
-
-    const validPatterns = [
-      "mamikos.com/room",
-      "cove.id/en/listings",
-      "cove.id/listings",
-      "rukita.co/place",
-    ];
-
-    const invalidPattern = /apartemen/;
-
-    const matchesValidPattern = validPatterns.some((pattern) => {
-      const [domain, subpath] = pattern.split("/", 2);
-      return host.includes(domain) && path.includes(subpath);
-    });
-
-    const matchesInvalidPattern = path.match(invalidPattern);
-
-    return matchesValidPattern && !matchesInvalidPattern;
-  } catch (error) {
-    return false;
-  }
-};
+import { isValidLink } from "@web/lib/utils/functions";
+import { useScrape } from "@web/hooks/useScrape";
 
 const SearchBar = () => {
   const [link, setLink] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { scrape, isLoading, error } = useScrape();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -40,26 +14,12 @@ const SearchBar = () => {
       return;
     }
 
-    try {
-      setIsLoading(true);
-      const response = await fetch("/api/scrape", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: link }),
-      });
+    const data = await scrape(link);
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-      } else {
-        console.log("Failed to fetch data");
-      }
-    } catch (error) {
-      console.error("Error scraping:", error);
-    } finally {
-      setIsLoading(false);
+    if (data) {
+      console.log(data);
+    } else if (error) {
+      console.error(error);
     }
   };
 
