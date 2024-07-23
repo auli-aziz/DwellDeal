@@ -24,11 +24,11 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="my-5 flex" onSubmit={handleSubmit}>
+    <form className="my-5 flex w-8/12" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter your link"
-        className="p-3 border-t-2 border-l-2 border-b-2 border-primary rounded-l-3xl w-96"
+        className="w-full p-3 border-t-2 border-l-2 border-b-2 border-primary rounded-l-3xl"
         value={link}
         onChange={(event) => setLink(event.target.value)}
       />

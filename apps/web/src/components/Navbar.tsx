@@ -13,7 +13,7 @@ const Navbar = () => {
       {pathname !== "/auth" ? (
         <header className="w-full h-fit py-3 px-10 shadow-lg z-10">
           <nav className="w-full flex justify-between items-center">
-            <Logo />
+            <Logo width={150} height={32} />
             <Link
               href={"/auth"}
               className="font-shanti text-sm font-regular text-white bg-primary py-1 px-7 rounded-2xl hover:scale-105"
@@ -24,7 +24,7 @@ const Navbar = () => {
         </header>
       ) : (
         <header className="w-full h-fit py-3 px-10 absolute z-10">
-          <Logo />
+          <Logo width={150} height={32} />
         </header>
       )}
     </>

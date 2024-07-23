@@ -11,6 +11,8 @@ const Auth = () => {
       <section className="relative w-[1000px]">
         <Image
           alt="Authentication"
+          placeholder='blur'
+          quality={100}
           src={auth}
           className="w-full h-full object-cover object-right-top"
         />

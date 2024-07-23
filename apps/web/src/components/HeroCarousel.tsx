@@ -1,44 +1,82 @@
 "use client";
 
-import React from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
-const heroImages = [
-  { imgUrl: "/assets/images/kost-1.jpg", alt: "kost-1" },
-  { imgUrl: "/assets/images/apartment-1.jpg", alt: "apartment-1" },
-  { imgUrl: "/assets/images/apartment-2.jpg", alt: "apartment-2" },
-]
+const slides = [
+  { img: "/assets/images/kost-1.jpg", alt: "kost-1" },
+  { img: "/assets/images/apartment-1.jpg", alt: "apartment-1" },
+  { img: "/assets/images/apartment-2.jpg", alt: "apartment-2" },
+];
 
 const HeroCarousel = () => {
+  let [current, setCurrent] = useState(0);
+
+  let previousSlide = () => {
+    if (current === 0) setCurrent(slides.length - 1);
+    else setCurrent(current - 1);
+  };
+
+  const nextSlide = useCallback(() => {
+    setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(nextSlide, 5000);
+    return () => clearInterval(intervalId);
+  }, [nextSlide]);
+
   return (
-    <div className='w-[455px] h-fit border-2'>
-      <Carousel
-        showThumbs={false}
-        autoPlay
-        infiniteLoop
-        interval={2000}
-        showArrows={false}
-        showStatus={false}
-      >
-        {
-          heroImages.map((image) => (
-            <div key={image.alt} className="relative w-full h-full">
-              <Image 
-                key={image.alt}
-                alt={image.alt}
-                src={image.imgUrl}
-                width={505}
-                height={505}
-                className='w-full h-full object-cover'
-              />
-            </div>
-          ))
-        }
-      </Carousel>
+    <div className="relative overflow-hidden w-[600px] h-[420px] border-2 rounded-l-3xl">
+      <div className="overflow-hidden">
+        <div
+          className={`flex transition ease-out duration-40`}
+          style={{
+            transform: `translateX(-${current * 100}%)`,
+          }}
+        >
+          {slides.map((s) => (
+            <Image
+              key={s.alt}
+              src={s.img}
+              alt={s.alt}
+              width={650}
+              height={450}
+              priority={true}
+              className="object-cover"
+            />
+          ))}
+        </div>
+        <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-5 text-xl">
+          <button onClick={previousSlide}>
+            <BsFillArrowLeftCircleFill />
+          </button>
+          <button onClick={nextSlide}>
+            <BsFillArrowRightCircleFill />
+          </button>
+        </div>
+        <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full">
+          {slides.map((s, i) => {
+            return (
+              <div
+                onClick={() => {
+                  setCurrent(i);
+                }}
+                key={"circle" + i}
+                className={`rounded-full w-2 h-2 cursor-pointer  ${
+                  i == current ? "bg-white" : "bg-gray-500"
+                }`}
+              ></div>
+            );
+          })}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default HeroCarousel;

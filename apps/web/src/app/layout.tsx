@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Averia_Libre, Shanti } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@web/components/Footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -33,10 +34,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${averia.variable} ${shanti.variable}`}>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${averia.variable} ${shanti.variable}`}
+    >
       <body className="border-0 w-full h-fit">
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
