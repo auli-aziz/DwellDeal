@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
-const ActiveLink = ({ href, children, ...props }: { href: string; children: ReactNode }) => {
+const ActiveLink = ({ href, children, onClick }: { href: string; children: ReactNode; onClick: () => void }) => {
   const path = usePathname();
 
   return (
-    <Link href={href} {...props} className={path.endsWith(href) ? "font-semibold" : "" + "font-shanti text-dark md:text-base text-sm"}>
+    <Link href={href} onClick={onClick} className={path.endsWith(href) ? "font-semibold" : "" + "font-shanti text-dark md:text-base text-sm"}>
       {children}
     </Link>
   );

@@ -17,4 +17,8 @@
   .button-gradient {
     @apply bg-gradient-to-r from-secondary via-primary to-dark
   }
+
+  .nav-list {
+    @apply w-full absolute sm:static flex sm:flex-row flex-col sm:gap-0 gap-3 sm:py-0 py-4 justify-between items-center sm:bg-transparent bg-neutral rounded-b-3xl
+  }
 }
