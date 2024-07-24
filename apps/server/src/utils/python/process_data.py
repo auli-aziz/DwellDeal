@@ -13,7 +13,12 @@ def main():
 
     # Create a dictionary with the data you want to return
     response = {
-        "received_data": data
+        "highest_price": 0,
+        "lowest_price": 0,
+        "average_price": 0,
+        "average_rating": 0,
+        "highest_rating": 0,
+        "received_data": data,
     }
     
     # Convert the dictionary to a JSON string
