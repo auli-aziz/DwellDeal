@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RoomsModule } from './rooms/rooms.module';
+import { UsersModule } from './users/users.module';
 
 function getMongoDBURI() {
   const mongoUri = process.env.MONGODB_URI;
@@ -19,7 +20,8 @@ function getMongoDBURI() {
       isGlobal: true,
     }),
     MongooseModule.forRoot(getMongoDBURI()),
-    RoomsModule
+    RoomsModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
