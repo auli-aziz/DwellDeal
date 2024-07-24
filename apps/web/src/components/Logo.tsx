@@ -7,7 +7,7 @@ const Logo = ({ width, height }: { width: number; height: number }) => {
   return (
     <div className="w-32">
       <Link href="/" className="flex items-center gap-2 relative h-5" >
-        <Image src={logo} alt="Logo" fill sizes="150px" />
+        <Image src={logo} alt="Logo" fill sizes="150px" style={{ objectFit: "contain"}} />
       </Link>
     </div>
   );

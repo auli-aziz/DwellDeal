@@ -3,19 +3,17 @@ import React, { FormEvent, useState } from "react";
 import { isValidLink } from "@server/utils/functions";
 import { useScrape } from "@web/hooks/useScrape";
 import InputBar from "../InputBar";
+import useFetch from "@web/hooks/useFetch";
+import { fetchResults } from "@web/lib/utils/http";
 
-const ScrapeBar = () => {
-  const { scrape, isLoading, error } = useScrape();
-  const [link, setLink] = useState<string>("");
+const SearchBar = () => {
+  const [keyword, setKeyword] = useState<string>("");
+  const { fetchData, isLoading, error } = useFetch(() => fetchResults(keyword));
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if (!isValidLink(link)) {
-      alert("Please enter a valid link");
-      return;
-    }
 
-    const data = await scrape(link);
+    const data = await fetchData();
 
     if (data) {
       console.log(data);
@@ -26,14 +24,14 @@ const ScrapeBar = () => {
 
   return (
     <InputBar
-      action="Submit"
-      variable={link}
-      setVariable={setLink}
-      placeholder="Enter your link"
+      action="Search"
+      variable={keyword}
+      setVariable={setKeyword}
+      placeholder="Enter keyword"
       isLoading={isLoading}
       handleSubmit={handleSubmit}
     />
   );
 };
 
-export default ScrapeBar;
+export default SearchBar;

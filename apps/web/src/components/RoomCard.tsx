@@ -20,7 +20,7 @@ const RoomCard = ({
   return (
     <div
       key={id}
-      className="bg-tertiary relative rounded-2xl overflow-hidden hover:cursor-pointer max-w-80"
+      className="bg-neutral relative rounded-xl overflow-hidden hover:cursor-pointer max-w-80"
       onClick={() => handleClickRoom(id)}
     >
       <div className="relative h-44">
