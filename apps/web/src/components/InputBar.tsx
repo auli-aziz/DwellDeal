@@ -32,7 +32,7 @@ const InputBar = ({
       <div className="border-b-2 border-primary rounded-r-full font-shanti">
         <button
           type="submit"
-          disabled={variable === "" || isLoading}
+          disabled={variable.length === 0 || isLoading}
           className={`py-3 px-5 h-full rounded-r-3xl rounded-bl-3xl button-gradient text-white font-bold ${
             variable === "" ? "" : "hover:bg-gray-900"
           }`}

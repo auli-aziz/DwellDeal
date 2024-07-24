@@ -15,14 +15,13 @@ export async function fetchRecents() {
   return json.recents;
 }
 
-export async function fetchResults(keyword: string) {
-  const response = await fetch(process.env.NEXT_PUBLIC_NESTJS_SERVER + "/rooms/results",
+export async function fetchResults(location: string) {
+  const response = await fetch(process.env.NEXT_PUBLIC_NESTJS_SERVER + "/rooms/" + location,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(keyword)
     }
   );
   if (!response.ok) {
@@ -30,5 +29,7 @@ export async function fetchResults(keyword: string) {
   }
 
   const json = await response.json();
-  return json;
+  console.log(json);
+  
+  return json.results;
 }

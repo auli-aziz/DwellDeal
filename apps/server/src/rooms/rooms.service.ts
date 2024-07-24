@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RoomInterface } from '@server/models/room.model';
-import { LinkDto } from '@server/utils/dto';
+import { LinkDto, LocationDto } from '@server/utils/dto';
 import puppeteer from 'puppeteer';
 import { site } from '@server/utils/constants';
 import scraper from '@server/utils/scraper';
@@ -30,6 +30,22 @@ export class RoomsService {
       throw new Error(error.message);
     }
   }
+
+  async getResults(location: string) {
+    try {
+      console.log("called");
+      console.log(location);
+        
+      const recents = await this.roomModel.find({
+        location: { $regex: new RegExp(location, 'i') }
+      });
+  
+      return recents;
+    } catch (error) {
+      throw error;
+    }
+  }
+  
 
   async scrapeAndStore(link: LinkDto) {
     const url = link.uri;

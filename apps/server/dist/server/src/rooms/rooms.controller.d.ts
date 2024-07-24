@@ -9,5 +9,11 @@ export declare class RoomsController {
             _id: string;
         }>)[];
     }>;
+    fetchResults(location: string): Promise<{
+        success: boolean;
+        results: (import("mongoose").Document<unknown, {}, import("../models/room.model").RoomInterface> & import("../models/room.model").RoomInterface & Required<{
+            _id: string;
+        }>)[];
+    }>;
     createItems(link: LinkDto): Promise<any>;
 }

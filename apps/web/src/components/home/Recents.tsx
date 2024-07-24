@@ -10,6 +10,7 @@ import RoomCard from "../RoomCard";
 const Recents = () => {
   const { fetchData, isLoading, error } = useFetch(fetchRecents);
   const [recents, setRecents] = useState<RoomInterface[]>([]);
+  const [fetched, setFetched] = useState<boolean>(false);
   const router = useRouter();
 
   const handleClickRoom = (id: string) => {
@@ -22,13 +23,14 @@ const Recents = () => {
       if (recents) {
         setRecents(recents);
       }
+      setFetched(true);
     };
 
     loadData();
-  }, [fetchData]);
+  }, []);
 
   let content;
-  if (isLoading) {
+  if (isLoading || !fetched) {
     content = (
       <p className="font-regular lg:text-xl text-base text-center font-montserrat text-dark">
         Loading...

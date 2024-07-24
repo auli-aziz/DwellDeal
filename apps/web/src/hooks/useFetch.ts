@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function useFetch(fetchFn: () => Promise<any>) {
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchData = async () => {
     try {

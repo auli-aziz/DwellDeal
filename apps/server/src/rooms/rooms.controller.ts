@@ -1,6 +1,6 @@
-import { BadRequestException, Body, Controller, Get, InternalServerErrorException, Post, Res } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, InternalServerErrorException, Param, Post, Res } from "@nestjs/common";
 import { RoomsService } from "./rooms.service";
-import { LinkDto } from "@server/utils/dto";
+import { LinkDto, LocationDto } from "@server/utils/dto";
 
 @Controller("rooms")
 export class RoomsController {
@@ -11,6 +11,20 @@ export class RoomsController {
     try {
       const recents = await this.roomsService.getRecents();     
       return { success: true, recents };
+    } catch(error: any) {
+      if (error instanceof BadRequestException || error instanceof InternalServerErrorException) {
+        throw error;
+      } else {
+        throw new InternalServerErrorException('Unexpected error occurred');
+      }
+    }
+  }
+
+  @Get("/:location")
+  async fetchResults(@Param("location") location: string) {
+    try {
+      const results = await this.roomsService.getResults(location);     
+      return { success: true, results };
     } catch(error: any) {
       if (error instanceof BadRequestException || error instanceof InternalServerErrorException) {
         throw error;

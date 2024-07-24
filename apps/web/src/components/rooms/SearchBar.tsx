@@ -1,7 +1,5 @@
 "use client";
 import React, { FormEvent, useState } from "react";
-import { isValidLink } from "@server/utils/functions";
-import { useScrape } from "@web/hooks/useScrape";
 import InputBar from "../InputBar";
 import useFetch from "@web/hooks/useFetch";
 import { fetchResults } from "@web/lib/utils/http";
@@ -13,6 +11,8 @@ const SearchBar = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    console.log("clicked");
+    
     const data = await fetchData();
 
     if (data) {
@@ -23,14 +23,16 @@ const SearchBar = () => {
   };
 
   return (
-    <InputBar
-      action="Search"
-      variable={keyword}
-      setVariable={setKeyword}
-      placeholder="Enter keyword"
-      isLoading={isLoading}
-      handleSubmit={handleSubmit}
-    />
+    <>
+      <InputBar
+        action="Search"
+        variable={keyword}
+        setVariable={setKeyword}
+        placeholder="Enter location"
+        isLoading={isLoading}
+        handleSubmit={handleSubmit}
+      />
+    </>
   );
 };
 

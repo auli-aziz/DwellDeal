@@ -33,6 +33,20 @@ let RoomsController = class RoomsController {
             }
         }
     }
+    async fetchResults(location) {
+        try {
+            const results = await this.roomsService.getResults(location);
+            return { success: true, results };
+        }
+        catch (error) {
+            if (error instanceof common_1.BadRequestException || error instanceof common_1.InternalServerErrorException) {
+                throw error;
+            }
+            else {
+                throw new common_1.InternalServerErrorException('Unexpected error occurred');
+            }
+        }
+    }
     async createItems(link) {
         try {
             if (!link) {
@@ -58,6 +72,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RoomsController.prototype, "fetchRecents", null);
+__decorate([
+    (0, common_1.Get)("/:location"),
+    __param(0, (0, common_1.Param)("location")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], RoomsController.prototype, "fetchResults", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

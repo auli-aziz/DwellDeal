@@ -36,6 +36,19 @@ let RoomsService = class RoomsService {
             throw new Error(error.message);
         }
     }
+    async getResults(location) {
+        try {
+            console.log("called");
+            console.log(location);
+            const recents = await this.roomModel.find({
+                location: { $regex: new RegExp(location, 'i') }
+            });
+            return recents;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
     async scrapeAndStore(link) {
         const url = link.uri;
         if (!url) {
