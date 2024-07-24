@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 export interface RoomInterface extends mongoose.Document {
+    _id: string;
     url: string;
     title: string;
     images: string;

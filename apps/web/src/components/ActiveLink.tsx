@@ -6,7 +6,7 @@ const ActiveLink = ({ href, children, onClick }: { href: string; children: React
   const path = usePathname();
 
   return (
-    <Link href={href} onClick={onClick} className={path.endsWith(href) ? "font-semibold" : "" + "font-shanti text-dark md:text-base text-sm"}>
+    <Link href={href} onClick={onClick} className={path.endsWith(href) ? "font-semibold" : "" + "font-shanti text-dark text-sm hover:font-semibold"}>
       {children}
     </Link>
   );

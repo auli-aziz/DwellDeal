@@ -5,9 +5,11 @@ import logo from "../../public/assets/icons/logo2.png";
 
 const Logo = ({ width, height }: { width: number; height: number }) => {
   return (
-    <Link href="/" className="flex items-center gap-2">
-      <Image src={logo} alt="Logo" width={width} height={height} />
-    </Link>
+    <div className="w-32">
+      <Link href="/" className="flex items-center gap-2 relative h-5" >
+        <Image src={logo} alt="Logo" fill sizes="150px" />
+      </Link>
+    </div>
   );
 };
 

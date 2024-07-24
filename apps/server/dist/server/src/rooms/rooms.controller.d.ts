@@ -6,7 +6,7 @@ export declare class RoomsController {
     fetchRecents(): Promise<{
         success: boolean;
         recents: (import("mongoose").Document<unknown, {}, import("../models/room.model").RoomInterface> & import("../models/room.model").RoomInterface & Required<{
-            _id: unknown;
+            _id: string;
         }>)[];
     }>;
     createItems(link: LinkDto): Promise<any>;

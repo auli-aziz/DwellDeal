@@ -25,9 +25,9 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed bg-tertiary w-[95vw] h-fit py-3 sm:px-10 px-5 mt-4 left-1/2 transform -translate-x-1/2 z-10 rounded-full">
-        <div className="relative flex justify-around lg:gap-x-24 md:gap-x-14">
-          <Logo width={150} height={32} />
+      <header className="fixed bg-tertiary w-[97vw] h-fit py-3 sm:px-10 px-5 mt-2 left-1/2 transform -translate-x-1/2 z-10 rounded-full">
+        <div className="relative flex justify-around items-center lg:gap-x-24 md:gap-x-14">
+          <Logo width={120} height={32} />
           <div
             className="sm:hidden text-2xl text-dark"
             onClick={handleMobileHamburger}
