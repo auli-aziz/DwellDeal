@@ -11,9 +11,7 @@ export declare class RoomsController {
     }>;
     fetchResults(location: string): Promise<{
         success: boolean;
-        results: (import("mongoose").Document<unknown, {}, import("../models/room.model").RoomInterface> & import("../models/room.model").RoomInterface & Required<{
-            _id: string;
-        }>)[];
+        results: unknown;
     }>;
     createItems(link: LinkDto): Promise<any>;
 }

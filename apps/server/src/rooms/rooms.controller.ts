@@ -1,6 +1,6 @@
 import { BadRequestException, Body, Controller, Get, InternalServerErrorException, Param, Post, Res } from "@nestjs/common";
 import { RoomsService } from "./rooms.service";
-import { LinkDto, LocationDto } from "@server/utils/dto";
+import { LinkDto } from "@server/utils/dto";
 
 @Controller("rooms")
 export class RoomsController {

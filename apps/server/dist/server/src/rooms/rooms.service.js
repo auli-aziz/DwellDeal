@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoomsService = void 0;
+const child_process_1 = require("child_process");
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
@@ -38,12 +39,27 @@ let RoomsService = class RoomsService {
     }
     async getResults(location) {
         try {
-            console.log("called");
-            console.log(location);
-            const recents = await this.roomModel.find({
-                location: { $regex: new RegExp(location, 'i') }
+            const results = await this.roomModel.find({
+                location: { $regex: new RegExp(location, 'i') },
             });
-            return recents;
+            const py = (0, child_process_1.spawn)('python', ["./src/utils/python/process_data.py"]);
+            py.stdin.write(JSON.stringify(results));
+            py.stdin.end();
+            const result = new Promise((resolve, reject) => {
+                let output;
+                py.stdout.on('data', (data) => {
+                    output = JSON.parse(data);
+                });
+                py.stderr.on('data', (data) => {
+                    console.error(`[python] Error occured: ${data}`);
+                    reject(`Error occured`);
+                });
+                py.on('exit', (code) => {
+                    console.log(`Child process exited with code ${code}`);
+                    resolve(output);
+                });
+            });
+            return result;
         }
         catch (error) {
             throw error;

@@ -1,8 +1,9 @@
+import { spawn } from 'child_process';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RoomInterface } from '@server/models/room.model';
-import { LinkDto, LocationDto } from '@server/utils/dto';
+import { LinkDto } from '@server/utils/dto';
 import puppeteer from 'puppeteer';
 import { site } from '@server/utils/constants';
 import scraper from '@server/utils/scraper';
@@ -33,19 +34,36 @@ export class RoomsService {
 
   async getResults(location: string) {
     try {
-      console.log("called");
-      console.log(location);
-        
-      const recents = await this.roomModel.find({
-        location: { $regex: new RegExp(location, 'i') }
+      const results = await this.roomModel.find({
+        location: { $regex: new RegExp(location, 'i') },
       });
-  
-      return recents;
+      const py = spawn('python', ["./src/utils/python/process_data.py"]);
+      py.stdin.write(JSON.stringify(results));
+      py.stdin.end();
+      
+      const result = new Promise((resolve, reject) => {
+        let output: any;
+        py.stdout.on('data', (data) => {
+          output = JSON.parse(data);
+        });
+
+        // Handle erros
+        py.stderr.on('data', (data) => {
+          console.error(`[python] Error occured: ${data}`);
+          reject(`Error occured`);
+        });
+
+        py.on('exit', (code) => {
+          console.log(`Child process exited with code ${code}`);
+          resolve(output);
+        });
+      });
+
+      return result;
     } catch (error) {
       throw error;
     }
   }
-  
 
   async scrapeAndStore(link: LinkDto) {
     const url = link.uri;
