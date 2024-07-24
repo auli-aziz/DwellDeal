@@ -19,6 +19,20 @@ let RoomsController = class RoomsController {
     constructor(roomsService) {
         this.roomsService = roomsService;
     }
+    async fetchRecents() {
+        try {
+            const recents = await this.roomsService.getRecents();
+            return { success: true, recents };
+        }
+        catch (error) {
+            if (error instanceof common_1.BadRequestException || error instanceof common_1.InternalServerErrorException) {
+                throw error;
+            }
+            else {
+                throw new common_1.InternalServerErrorException('Unexpected error occurred');
+            }
+        }
+    }
     async createItems(link) {
         try {
             if (!link) {
@@ -38,6 +52,12 @@ let RoomsController = class RoomsController {
     }
 };
 exports.RoomsController = RoomsController;
+__decorate([
+    (0, common_1.Get)("/recents"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RoomsController.prototype, "fetchRecents", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

@@ -4,6 +4,7 @@ import Image from "next/image";
 import mamikos from "../../../public/assets/icons/mamikos.png";
 import rukita from "../../../public/assets/icons/rukita.png";
 import cove from "../../../public/assets/icons/cove.png";
+import WebsiteLogo from "./WebsiteLogo";
 
 const Hero = () => {
   return (
@@ -21,23 +22,13 @@ const Hero = () => {
           </p>
           <div className="flex lg:gap-7 gap-3">
             <div className="website-logo">
-              <Image
-                src={mamikos}
-                alt="mamikos"
-                layout="fill"
-                objectFit="contain"
-              />
+              <WebsiteLogo website={mamikos} href="https://mamikos.com/" />
             </div>
             <div className="website-logo">
-              <Image
-                src={rukita}
-                alt="rukita"
-                layout="fill"
-                objectFit="contain"
-              />
+              <WebsiteLogo website={rukita} href="https://www.rukita.co/" />
             </div>
             <div className="website-logo">
-              <Image src={cove} alt="cove" layout="fill" objectFit="contain" />
+              <WebsiteLogo website={cove} href="https://cove.id/" />
             </div>
           </div>
         </div>

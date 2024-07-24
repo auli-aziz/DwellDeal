@@ -64,7 +64,7 @@ export const isValidLink = (input: string): boolean => {
       "^mamikos\\.com/room",
       "^cove\\.id/en/listings",
       "^cove\\.id/listings",
-      "^rukita\\.co/place",
+      "rukita\\.co/place",
     ].map(pattern => new RegExp(pattern, 'i'));
 
     const invalidPattern = /apartemen/i; 

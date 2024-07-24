@@ -19,6 +19,18 @@ export class RoomsService {
     @InjectModel('Room') private readonly roomModel: Model<RoomInterface>,
   ) {}
 
+  async getRecents() {
+    try {
+      const recents = await this.roomModel
+        .find()
+        .sort({ createdAt: -1 })
+        .limit(8);
+      return recents;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
   async scrapeAndStore(link: LinkDto) {
     const url = link.uri;
     if (!url) {
@@ -53,6 +65,8 @@ export class RoomsService {
         default:
           throw new Error('Unsupported site');
       }
+
+      await browser.close();
 
       if (scrapedRooms && scrapedRooms.length > 0) {
         for (const scrapedRoom of scrapedRooms) {
@@ -99,7 +113,7 @@ export class RoomsService {
       }
       return { success: true };
     } catch (error: any) {
-      console.log(error.message);
+      throw new Error(error.message);
     }
   }
 }

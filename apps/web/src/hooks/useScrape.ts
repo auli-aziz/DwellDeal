@@ -18,13 +18,13 @@ export const useScrape = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        throw new Error("Failed to post data");
       }
 
       const data = await response.json();
       return data;
-    } catch (err: any) {
-      setError(err.message || "Error scraping");
+    } catch (error: any) {
+      setError(error.message || "Error scraping");
       return null;
     } finally {
       setIsLoading(false);

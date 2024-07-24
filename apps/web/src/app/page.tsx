@@ -3,6 +3,7 @@ import ScrapeBar from "@/components/home/ScrapeBar";
 import buildings from "../../public/assets/icons/Buildings.png";
 import Image from "next/image";
 import Hero from "@web/components/home/Hero";
+import Recents from "@web/components/home/Recents";
 
 const Home = async () => {
   return (
@@ -18,14 +19,7 @@ const Home = async () => {
         <ScrapeBar />
         <Image src={buildings} alt="Buildings" className="mt-5" />
       </section>
-      <section className="flex flex-col items-center my-10">
-        <h3 className="font-montserrat font-bold text-dark lg:text-3xl text-2xl">Recent</h3>
-        <div className="grid">
-        <p className="font-regular lg:text-xl pt-5 text-base text-center font-montserrat text-dark">
-            No scraping has been made.
-          </p>
-        </div>
-      </section>
+      <Recents />
     </div>
   );
 };
