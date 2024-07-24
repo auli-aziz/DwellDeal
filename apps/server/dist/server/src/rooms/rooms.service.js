@@ -18,8 +18,8 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const puppeteer_1 = require("puppeteer");
 const constants_1 = require("../utils/constants");
-const functions_1 = require("../utils/functions");
 const scraper_1 = require("../utils/scraper");
+const functions_1 = require("../utils/functions");
 let RoomsService = class RoomsService {
     constructor(roomModel) {
         this.roomModel = roomModel;
@@ -43,13 +43,13 @@ let RoomsService = class RoomsService {
             let scrapedRooms;
             switch (hostname) {
                 case constants_1.site.mamikos:
-                    scrapedRooms = await (0, scraper_1.scrapeMamikosLink)(url, page);
+                    scrapedRooms = await scraper_1.default.scrapeMamikosLink(url, page);
                     break;
                 case constants_1.site.cove:
-                    scrapedRooms = await (0, scraper_1.scrapeCoveLink)(url, page);
+                    scrapedRooms = await scraper_1.default.scrapeCoveLink(url, page);
                     break;
                 case constants_1.site.rukita:
-                    scrapedRooms = await (0, scraper_1.scrapeRukitaLink)(url, page);
+                    scrapedRooms = await scraper_1.default.scrapeRukitaLink(url, page);
                     break;
                 default:
                     throw new Error('Unsupported site');

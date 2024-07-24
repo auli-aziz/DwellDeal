@@ -13,6 +13,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const rooms_module_1 = require("./rooms/rooms.module");
+const users_module_1 = require("./users/users.module");
 function getMongoDBURI() {
     const mongoUri = process.env.MONGODB_URI;
     if (!mongoUri) {
@@ -30,7 +31,8 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(getMongoDBURI()),
-            rooms_module_1.RoomsModule
+            rooms_module_1.RoomsModule,
+            users_module_1.UsersModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

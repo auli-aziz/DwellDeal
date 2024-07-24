@@ -22,7 +22,7 @@ const Home = async () => {
         <h3 className="font-montserrat font-bold text-dark lg:text-3xl text-2xl">Recent</h3>
         <div className="grid">
         <p className="font-regular lg:text-xl pt-5 text-base text-center font-montserrat text-dark">
-            No scraping not been made.
+            No scraping has been made.
           </p>
         </div>
       </section>
