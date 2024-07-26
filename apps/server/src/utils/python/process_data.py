@@ -22,7 +22,7 @@ def main():
     average_rating = sum(ratings)/len(ratings)
     total_rooms = len(data)
 
-    gender_count = {'campur':0, 'Kos putra':0, 'Kos putri':0}
+    gender_count = {'Campur':0, 'Putra':0, 'Putri':0}
     for gen in gender :
         if gen in gender_count :
             gender_count[gen] += 1;
@@ -38,6 +38,7 @@ def main():
         "average_rating": average_rating,
         "highest_rating": highest_rating,
         "total_rooms": total_rooms,
+        "gender_count": gender_count,
         "received_data": data,
     }
     
