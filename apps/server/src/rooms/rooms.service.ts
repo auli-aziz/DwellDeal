@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RoomInterface } from '@server/models/room.model';
@@ -14,7 +14,7 @@ import {
   getLowestPrice,
 } from '@server/utils/functions';
 
-@Injectable()
+@Injectable({ scope: Scope.DEFAULT })
 export class RoomsService {
   constructor(
     @InjectModel('Room') private readonly roomModel: Model<RoomInterface>,
@@ -63,6 +63,7 @@ export class RoomsService {
 
       return result;
     } catch (error) {
+      console.log(error.message);
       throw error;
     }
   }

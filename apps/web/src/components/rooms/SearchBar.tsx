@@ -1,28 +1,12 @@
 "use client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import InputBar from "../InputBar";
 import useFetch from "@web/hooks/useFetch";
 import { fetchResults } from "@web/lib/utils/http";
+import { RoomContext } from "@web/contexts/RoomContext";
 
 const SearchBar = () => {
-  const [keyword, setKeyword] = useState<string>("");
-  const [result, setResult] = useState<string[]>([]);
-  const { fetchData, isLoading, error } = useFetch(() => fetchResults(keyword));
-
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-
-    console.log("clicked");
-    
-    const data = await fetchData();
-
-    if (data) {
-      console.log(data);
-      setResult(data);
-    } else if (error) {
-      console.error(error);
-    }
-  };
+  const { keyword, isLoading, setKeyword, handleSubmit } = useContext(RoomContext)
 
   return (
     <>
