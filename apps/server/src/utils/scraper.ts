@@ -61,7 +61,7 @@ const scraper = {
             rating: 5,
             currentPrice: extractPrice(price),
             originalPrice: extractPrice(originalPrice),
-            gender: "campur",
+            gender: "Campur",
             isAvailable,
           },
         ];
@@ -177,7 +177,14 @@ const scraper = {
         const location = locationElement?.textContent?.trim() ?? '';
   
         const genderElement = document.querySelector('.ml-1.flex-1.truncate.text-sm.md\\:text-md span:nth-child(2) span:last-child');
-        const gender = genderElement?.textContent?.trim() ?? 'campur';
+        let gender = genderElement?.textContent?.trim() ?? 'campur';
+        if (gender.toLowerCase().includes("putra")) {
+          gender = "Putra";
+        } else if (gender.toLowerCase().includes("putri")){
+          gender = "Putri"
+        } else if (gender.toLowerCase().includes("campur")){
+          gender = "Campur"
+        }
   
         elements.forEach((element) => {
           const image = element.querySelector('[data-testid="Image"]')?.getAttribute('src');
