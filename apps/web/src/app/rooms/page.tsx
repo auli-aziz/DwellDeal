@@ -1,9 +1,11 @@
 import SearchBar from "@web/components/rooms/SearchBar";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import buildings from "../../../public/assets/icons/Buildings.png";
+import useFetch from "@web/hooks/useFetch";
 
 const Rooms = () => {
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center pt-20">
       <Image src={buildings} alt="Buildings" className="mt-5" />

@@ -38,6 +38,7 @@ let RoomsService = class RoomsService {
         }
     }
     async getResults(location) {
+        console.log("Location " + location);
         try {
             const results = await this.roomModel.find({
                 location: { $regex: new RegExp(location, 'i') },

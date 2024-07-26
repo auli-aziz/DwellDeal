@@ -6,6 +6,7 @@ import { fetchResults } from "@web/lib/utils/http";
 
 const SearchBar = () => {
   const [keyword, setKeyword] = useState<string>("");
+  const [result, setResult] = useState<string[]>([]);
   const { fetchData, isLoading, error } = useFetch(() => fetchResults(keyword));
 
   const handleSubmit = async (event: FormEvent) => {
@@ -17,6 +18,7 @@ const SearchBar = () => {
 
     if (data) {
       console.log(data);
+      setResult(data);
     } else if (error) {
       console.error(error);
     }
