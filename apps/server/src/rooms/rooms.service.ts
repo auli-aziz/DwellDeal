@@ -39,7 +39,7 @@ export class RoomsService {
       const results = await this.roomModel.find({
         location: { $regex: new RegExp(location, 'i') },
       });
-      const py = spawn('python', ["./src/utils/python/process_data.py"]);
+      const py = spawn('py', ["./src/utils/python/process_data.py"]);
       py.stdin.write(JSON.stringify(results));
       py.stdin.end();
       
