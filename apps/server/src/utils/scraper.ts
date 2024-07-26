@@ -118,8 +118,16 @@ const scraper = {
         const rating = ratingElement?.textContent?.trim() ?? "";
         const price = priceElement?.textContent?.trim() ?? "";
         const originalPrice = originalPriceElement?.textContent?.trim() ?? "";
-        const gender = genderElement?.textContent?.trim() ?? "";
-  
+
+        let gender = genderElement?.textContent?.trim() ?? "";
+        if (gender.toLowerCase().includes("putra")) {
+          gender = "Putra";
+        } else if (gender.toLowerCase().includes("putri")){
+          gender = "Putri"
+        } else if (gender.toLowerCase().includes("campur")){
+          gender = "Campur"
+        }
+
         const availabilityElement =
           document.querySelector(".detail-kost-overview__availability-text") ||
           document.querySelector(".detail-kost-overview__availability-wrapper");
