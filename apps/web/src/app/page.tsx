@@ -1,5 +1,5 @@
 import React from "react";
-import ScrapeBar from "@/components/home/ScrapeBar";
+import ScrapeBar from "@web/components/home/ScrapeBar";
 import buildings from "../../public/assets/icons/Buildings.png";
 import Image from "next/image";
 import Hero from "@web/components/home/Hero";

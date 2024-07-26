@@ -16,6 +16,7 @@ apps/web/next
 
 # production
 /build
+dist/
 
 # misc
 .DS_Store
