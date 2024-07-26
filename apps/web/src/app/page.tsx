@@ -17,9 +17,7 @@ const Home = async () => {
           </p>
         </div>
         <ScrapeBar />
-        <div className="w-full">
-          <Image src={buildings} alt="Buildings" className="mt-5 object-contain" fill />
-        </div>
+        <Image src={buildings} alt="Buildings" className="mt-5" />
       </section>
       <Recents />
     </div>
