@@ -1,7 +1,8 @@
 import SearchBar from "@web/components/rooms/SearchBar";
 import Image from "next/image";
 import React, { useState } from "react";
-import buildings from "../../../public/assets/icons/Buildings.png";
+import buildings from "@public/assets/icons/Buildings.png";
+import { RoomContext } from "@web/contexts/RoomContext";
 
 const Rooms = () => {
   return (

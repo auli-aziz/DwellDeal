@@ -1,6 +1,6 @@
 import React from "react";
 import ScrapeBar from "@web/components/home/ScrapeBar";
-import buildings from "../../public/assets/icons/Buildings.png";
+import buildings from "@public/assets/icons/Buildings.png";
 import Image from "next/image";
 import Hero from "@web/components/home/Hero";
 import Recents from "@web/components/home/Recents";
@@ -17,7 +17,9 @@ const Home = async () => {
           </p>
         </div>
         <ScrapeBar />
-        <Image src={buildings} alt="Buildings" className="mt-5" />
+        <div className="w-full">
+          <Image src={buildings} alt="Buildings" className="mt-5 object-contain" fill />
+        </div>
       </section>
       <Recents />
     </div>
