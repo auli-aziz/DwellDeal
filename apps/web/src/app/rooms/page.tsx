@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import buildings from "../../../public/assets/icons/Buildings.png";
 import useFetch from "@web/hooks/useFetch";
+import Dashboard from "@web/components/rooms/dashboard/Dashboard";
 
 const Rooms = () => {
 
@@ -16,6 +17,7 @@ const Rooms = () => {
           </p>
       </div>
       <SearchBar />
+      <Dashboard/>
     </div>
   );
 };
