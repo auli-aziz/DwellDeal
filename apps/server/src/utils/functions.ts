@@ -1,6 +1,5 @@
 import { site } from "./constants";
-import { PriceHistoryItem } from "@/types";
-import { BarChart } from '@mui/x-charts/BarChart';
+import { PriceHistoryItem } from "@web/types";
 
 export const extractPrice = (price: string) => {
   if(price == null || price == "") return;
