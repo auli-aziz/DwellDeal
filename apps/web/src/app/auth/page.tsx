@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import auth from "../../../public/assets/images/auth.png";
-import AuthCard from '@/components/auth/AuthCard';
+import auth from "@public/assets/images/auth.png";
+import AuthCard from '@web/components/auth/AuthCard';
 
 const Auth = () => {
   

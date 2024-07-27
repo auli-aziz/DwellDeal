@@ -1,9 +1,9 @@
 import React from "react";
 import HeroCarousel from "./HeroCarousel";
 import Image from "next/image";
-import mamikos from "../../../public/assets/icons/mamikos.png";
-import rukita from "../../../public/assets/icons/rukita.png";
-import cove from "../../../public/assets/icons/cove.png";
+import mamikos from "@public/assets/icons/mamikos.png";
+import rukita from "@public/assets/icons/rukita.png";
+import cove from "@public/assets/icons/cove.png";
 import WebsiteLogo from "./WebsiteLogo";
 
 const Hero = () => {
