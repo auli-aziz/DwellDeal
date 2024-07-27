@@ -4,7 +4,7 @@ import useFetch from "@web/hooks/useFetch";
 import { fetchRecents } from "@web/lib/utils/http";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { RoomInterface } from "@server/models/room.model";
+import { RoomInterface } from "@server/rooms/room.model";
 import RoomCard from "../RoomCard";
 
 const Recents = () => {
