@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.5",
+    "@mui/material": "^5.16.5",
+    "@mui/x-charts": "^7.11.1",
     "next": "14.2.4",
     "proxy-chain": "^2.5.1",
     "react": "^18",
@@ -16,7 +21,7 @@
     "react-icons": "^5.2.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.14.12",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

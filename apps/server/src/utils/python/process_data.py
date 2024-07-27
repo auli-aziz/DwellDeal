@@ -17,9 +17,9 @@ def main():
 
     highest_price = max(prices)
     lowest_price = min(prices)
-    average_price = sum(prices)/len(prices)
+    average_price = round(sum(prices) / len(prices), 2)
     highest_rating = max(ratings)
-    average_rating = sum(ratings)/len(ratings)
+    average_rating = round(sum(ratings) / len(ratings), 2)
     total_rooms = len(data)
 
     gender_count = {'Campur':0, 'Putra':0, 'Putri':0}
@@ -32,6 +32,8 @@ def main():
 
     # Create a dictionary with the data you want to return
     response = {
+        "prices": prices,
+        "ratings": ratings,
         "highest_price": highest_price,
         "lowest_price": lowest_price,
         "average_price": average_price,
