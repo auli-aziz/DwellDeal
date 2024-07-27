@@ -1,5 +1,5 @@
 import { site } from "./constants";
-import { PriceHistoryItem } from "@/types";
+import { PriceHistoryItem } from "@web/types";
 
 export const extractPrice = (price: string) => {
   if(price == null || price == "") return;
