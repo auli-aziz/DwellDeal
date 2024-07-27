@@ -11,7 +11,7 @@ export type DataCardProps = {
 const DataCard = (props: DataCardProps) => {
     const { title, value, description } = props;
     return (
-      <Paper sx={{padding:2, margin:1}}>
+      <div className="p-5">
         <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
           <Typography fontSize={"h6"} color={"lightslategrey"}>
             {title}
@@ -27,9 +27,9 @@ const DataCard = (props: DataCardProps) => {
               <InfoOutlinedIcon />
             </IconButton>
           </Tooltip>
-        </div><Typography variant="h4" color={"dark"}>{value}</Typography>
+        </div><Typography variant="h3" color={"#565151"} className="font-montserrat font-semibold">{value}</Typography>
         
-      </Paper>
+      </div>
     );
 };
 
