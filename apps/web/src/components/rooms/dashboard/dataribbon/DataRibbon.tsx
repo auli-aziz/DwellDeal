@@ -6,14 +6,19 @@ import { useContext } from "react";
 import { RoomContext } from "@web/contexts/RoomContext";
 
 const DataRibbon = () => {
-    const {result} = useContext(RoomContext);
-    console.log(result.values);
+  const roomContext = useContext(RoomContext);
+
+  if (!roomContext) {
+    return <div>Loading...</div>;
+  }
+
+  const { result } = roomContext;
     return (
         <Grid container gap={2}>
           <Grid>
             <DataCard
               title={"Average Rating"}
-              value={result.average_rating}
+              value={result.average_rating.toString()}
               description={
                 "Average rating of all rooms that have been scraped in this area"
               }
@@ -22,7 +27,7 @@ const DataRibbon = () => {
           <Grid>
             <DataCard
               title={"Total Rooms"}
-              value={result.total_rooms}
+              value={result.total_rooms.toString()}
               description={
                 "Total rooms that have been scraped in this area"
             }
@@ -31,7 +36,7 @@ const DataRibbon = () => {
           <Grid>
             <DataCard
               title={"Average Price"}
-              value={result.average_price}
+              value={result.average_price.toString()}
               description={
                 "Average price for all rooms that have been scraped in this area"
               }
