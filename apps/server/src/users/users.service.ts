@@ -27,4 +27,8 @@ export class UsersService {
     const result = await newUser.save();
     return result;
   }
+
+  async findByEmail(email: string) {
+    return await this.userModel.findOne({ email });
+  }
 }

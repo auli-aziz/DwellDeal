@@ -15,3 +15,12 @@ export class UserDto {
   @IsString()
   password: string;
 }
+
+export class LoginDto {
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  password: string;
+}
