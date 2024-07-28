@@ -6,7 +6,7 @@ import { LinkDto } from "@server/utils/dto";
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
 
-  @Get("/recents")
+  @Get("recents")
   async fetchRecents() {
     try {
       const recents = await this.roomsService.getRecents();     
@@ -20,7 +20,7 @@ export class RoomsController {
     }
   }
 
-  @Get("/:location")
+  @Get(":location")
   async fetchResults(@Param("location") location: string) {
     try {
       const results = await this.roomsService.getResults(location);     
