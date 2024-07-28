@@ -21,11 +21,8 @@ export class AuthService {
       },
     };
 
-    console.log(payload);
-    
-
     return {
-      user: payload,
+      user: {id: user!._id, ...payload},
       backendTokens: {
         accessToken: await this.jwtService.signAsync(payload, {
           expiresIn: '20s',
