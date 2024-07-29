@@ -3,6 +3,7 @@ import { fetchResults } from "@web/lib/utils/http";
 import { createContext, FormEvent, ReactNode, useState } from "react";
 
 export interface Result {
+  prices_name: { name: string; price: number }[];
   prices: number[];
   ratings: number[];
   highest_price: number;
@@ -66,6 +67,7 @@ export const RoomProvider = ({ children }: { children: ReactNode }) => {
 export const RoomProvider = ({ children }: { children: ReactNode }) => {
   const [keyword, setKeyword] = useState<string>("");
   const [result, setResult] = useState<Result>({
+    prices_name: [],
     prices: [],
     ratings: [],
     highest_price: 0,
