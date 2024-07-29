@@ -14,7 +14,7 @@ const DataRibbon = () => {
 
   const { result } = roomContext;
   return (
-    <div className="border-2 border-white bg-white rounded-xl">
+    <div className="border-2 border-white bg-white rounded-xl p-8" style={{ height: '245px', width:'780px' }}>
       <Grid container gap={2}>
         <Grid>
           <DataCard
