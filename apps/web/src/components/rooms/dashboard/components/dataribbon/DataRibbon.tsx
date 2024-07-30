@@ -1,4 +1,4 @@
-import DataCard from "../datacard/DataCard";
+import DataCard from "./DataCard";
 import React from "./index";
 import useFetch from "@web/hooks/useFetch";
 import { Grid } from "@mui/material"
