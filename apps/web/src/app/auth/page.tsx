@@ -4,8 +4,6 @@ import auth from "@public/assets/images/auth.png";
 import AuthCard from '@web/components/auth/AuthCard';
 
 const Auth = () => {
-  
-
   return (
     <div className="flex h-screen w-full">
       <section className="relative w-[1000px]">
