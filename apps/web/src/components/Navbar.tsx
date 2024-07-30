@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ActiveLink from "./ActiveLink";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
+import AuthButton from "./AuthButton";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -39,12 +40,13 @@ const Navbar = () => {
             <ActiveLink href={"/rooms"} onClick={handleMobileHamburger}>Rooms</ActiveLink>
             <ActiveLink href={"/aboutus"} onClick={handleMobileHamburger}>About Us</ActiveLink>
             <ActiveLink href={"/favorites"} onClick={handleMobileHamburger}>Favorites</ActiveLink>
-            <Link
+            {/* <Link
               href={"/auth"}
               className="font-shanti py-2 w-[120px] text-sm font-regular text-white rounded-full hover:scale-105 text-center button-gradient"
             >
               Login
-            </Link>
+            </Link> */}
+            <AuthButton />
           </nav>
         </div>
       </header>

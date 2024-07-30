@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import SubmitButton from "../SubmitButton";
 import Login from "./Login";
 import SelectAuthButton from "./SelectAuthButton";
 import Register from "./Register";
@@ -32,10 +31,7 @@ const AuthCard = () => {
           Register
         </SelectAuthButton>
       </div>
-      <form action="" className="flex flex-col items-center w-full mt-5 text">
-        {selected === "Login" ? <Login /> : <Register />}
-        <SubmitButton />
-      </form>
+      {selected === "Login" ? <Login /> : <Register />}
     </div>
   );
 };
