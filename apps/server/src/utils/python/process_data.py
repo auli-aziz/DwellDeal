@@ -13,6 +13,7 @@ def main():
 
     prices_name = [{'name': items['title'], 'price': items['currentPrice']} for items in data]
     prices = [items['currentPrice'] for items in data]
+    ratings_name = [{'name': items['title'], 'rating': items['rating']} for items in data]
     ratings = [items['rating'] for items in data]
     gender = [items['gender'] for items in data]
 
@@ -35,6 +36,7 @@ def main():
     response = {
         "prices_name": prices_name,
         "prices": prices,
+        "ratings_name": ratings_name,
         "ratings": ratings,
         "highest_price": highest_price,
         "lowest_price": lowest_price,

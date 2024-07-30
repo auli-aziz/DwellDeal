@@ -5,6 +5,7 @@ import { createContext, FormEvent, ReactNode, useState } from "react";
 export interface Result {
   prices_name: { name: string; price: number }[];
   prices: number[];
+  ratings_name: { name: string; rating: number }[];
   ratings: number[];
   highest_price: number;
   lowest_price: number;
@@ -69,6 +70,7 @@ export const RoomProvider = ({ children }: { children: ReactNode }) => {
   const [result, setResult] = useState<Result>({
     prices_name: [],
     prices: [],
+    ratings_name: [],
     ratings: [],
     highest_price: 0,
     lowest_price: 0,
