@@ -4,6 +4,7 @@ import DataRibbon from "./components/dataribbon/DataRibbon";
 import HighestPriceChart from "./components/HighestPriceChart";
 import HighestRating from "./components/HighestRating";
 import LowestPriceChart from "./components/LowestPriceChart";
+import RoomProportionChart from "./components/RoomProportionChart";
 
 const Dashboard = () => {
     return (
@@ -18,7 +19,7 @@ const Dashboard = () => {
             </Box>
             <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2}>
                 <Box flex={1} mr={2}>
-                    <HighestPriceChart />
+                    <RoomProportionChart />
                 </Box>
                 <Box display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start" gap={2}>
                     <Box flex={1} mb={2}>
