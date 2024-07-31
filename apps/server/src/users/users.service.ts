@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, Scope } from "@nestjs/common";
+import { BadRequestException, ConflictException, Injectable, Scope } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { UserInterface } from "./user.model";
 import { Model } from "mongoose";
@@ -13,8 +13,11 @@ export class UsersService {
 
   async create(userDto: UserDto) {
     const user = await this.userModel.findOne({ email: userDto.email });
-
     if(user) throw new ConflictException("Email duplicated.");
+
+    // password validation
+    if(userDto.password !== userDto.confirmpassword) throw new BadRequestException("Passwords do not match.");
+    if (userDto.password.length < 6) throw new BadRequestException("Password must be at least 6 characters long.");
 
     const newUser = new this.userModel({
       email: userDto.email,

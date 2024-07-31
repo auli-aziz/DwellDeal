@@ -3,9 +3,10 @@ import Input from "../Input";
 import Link from "next/link";
 import SubmitButton from "../SubmitButton";
 import { getCsrfToken, signIn } from "next-auth/react";
-import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation";
 
 const Login = ({ csrfToken }: { csrfToken: any }) => {
+  const router = useRouter();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   
@@ -18,8 +19,7 @@ const Login = ({ csrfToken }: { csrfToken: any }) => {
     });
 
     if(result?.ok) {
-      console.log("Signin success");
-      
+      router.push("/");
     }
   };
 

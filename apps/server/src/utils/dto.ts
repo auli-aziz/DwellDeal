@@ -14,6 +14,9 @@ export class UserDto {
 
   @IsString()
   password: string;
+  
+  @IsString()
+  confirmpassword: string;
 }
 
 export class LoginDto {
