@@ -40,12 +40,6 @@ const Navbar = () => {
             <ActiveLink href={"/rooms"} onClick={handleMobileHamburger}>Rooms</ActiveLink>
             <ActiveLink href={"/aboutus"} onClick={handleMobileHamburger}>About Us</ActiveLink>
             <ActiveLink href={"/favorites"} onClick={handleMobileHamburger}>Favorites</ActiveLink>
-            {/* <Link
-              href={"/auth"}
-              className="font-shanti py-2 w-[120px] text-sm font-regular text-white rounded-full hover:scale-105 text-center button-gradient"
-            >
-              Login
-            </Link> */}
             <AuthButton />
           </nav>
         </div>
