@@ -3,7 +3,7 @@ import { Montserrat, Averia_Libre, Shanti } from "next/font/google";
 import "./globals.css";
 import Navbar from "@web/components/Navbar";
 import Footer from "@web/components/Footer";
-import Providers from "@web/components/auth/SessionProvider";
+import Providers from "@web/components/SessionProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
