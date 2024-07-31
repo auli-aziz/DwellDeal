@@ -14,6 +14,7 @@ export interface Result {
   total_rooms: number;
   average_price: number;
   gender_count: { [key: string]: number };
+  gender_count_list: { name: string; count: number }[];
   received_data: any[]
 }
 
@@ -79,6 +80,7 @@ export const RoomProvider = ({ children }: { children: ReactNode }) => {
     highest_rating: 0,
     total_rooms: 0,
     gender_count: {},
+    gender_count_list: [],
     received_data: []
   });
   const { fetchData, isLoading, error } = useFetch(() => fetchResults(keyword));
