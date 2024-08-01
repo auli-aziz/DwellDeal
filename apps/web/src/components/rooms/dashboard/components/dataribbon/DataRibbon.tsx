@@ -14,36 +14,28 @@ const DataRibbon = () => {
 
   const { result } = roomContext;
   return (
-    <div className="border-2 border-white bg-white rounded-xl p-8" style={{ height: '245px', width:'780px' }}>
-      <Grid container gap={2}>
-        <Grid>
-          <DataCard
-            title={"Average Rating"}
-            value={result.average_rating.toString()}
-            description={
-              "Average rating of all rooms that have been scraped in this area"
-            }
-          />
-        </Grid>
-        <Grid>
-          <DataCard
-            title={"Total Rooms"}
-            value={result.total_rooms.toString()}
-            description={
-              "Total rooms that have been scraped in this area"
-            }
-          />
-        </Grid>
-        <Grid>
-          <DataCard
-            title={"Average Price"}
-            value={result.average_price.toString()}
-            description={
-              "Average price for all rooms that have been scraped in this area"
-            }
-          />
-        </Grid>
-      </Grid>
+    <div className="flex justify-around items-center gap-5 w-full h-[245px] bg-white rounded-xl p-5">
+      <DataCard
+        title={"Average Rating"}
+        value={result.average_rating.toString()}
+        description={
+          "Average rating of all rooms that have been scraped in this area"
+        }
+      />
+      <DataCard
+        title={"Total Rooms"}
+        value={result.total_rooms.toString()}
+        description={
+          "Total rooms that have been scraped in this area"
+        }
+      />
+      <DataCard
+        title={"Average Price"}
+        value={"Rp" + result.average_price.toString() + ",00"}
+        description={
+          "Average price for all rooms that have been scraped in this area"
+        }
+      />
     </div>
   );
 };

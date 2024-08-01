@@ -35,7 +35,7 @@ const LowestPriceChart = () => {
     const nameOfRoomWithLowestPrice = roomWithLowestPrice ? roomWithLowestPrice.name : 'No room found';
 
     return (
-        <div className="border-2 border-white bg-white rounded-xl p-5" style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+        <div className="w-full h-[268px] border-2 border-white bg-white rounded-xl p-5" style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
             <div>
                 <Typography fontSize={"h6"} style={{ color: 'lightslategrey' }}>
                     Lowest Price

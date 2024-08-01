@@ -8,29 +8,22 @@ import RoomProportionChart from "./components/RoomProportionChart";
 
 const Dashboard = () => {
     return (
-        <div className="bg-neutral rounded-xl p-10 mb-10">
-            <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2} mb={3}>
-                <Box flex={1} mr={1}>
-                    <HighestPriceChart />
-                </Box>
-                <Box flex={1}>
-                    <DataRibbon />
-                </Box>
-            </Box>
-            <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2}>
-                <Box flex={1} mr={2}>
+        <div className="flex flex-col bg-neutral rounded-xl p-10 mb-10">
+            <div className="h-fit flex lg:flex-row flex-col gap-3 justify-between items-start gap-2 mb-3">
+                <HighestPriceChart />
+                <DataRibbon />
+            </div>
+            <div className="flex lg:flex-row flex-col justify-between items-start gap-2">
+                <div className="flex-1 mr-2">
                     <RoomProportionChart />
-                </Box>
-                <Box display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start" gap={2}>
-                    <Box flex={1} mb={2}>
-                        <LowestPriceChart />
-                    </Box>
-                    <Box flex={1}>
-                        <HighestRating />
-                    </Box>
-                </Box>
-            </Box>
+                </div>
+                <div className="flex flex-col gap-3 justify-between items-start gap-2">
+                    <LowestPriceChart />
+                    <HighestRating />
+                </div>
+            </div>
         </div>
     )
 };
+
 export default Dashboard;

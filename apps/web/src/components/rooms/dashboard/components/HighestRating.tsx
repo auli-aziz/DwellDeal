@@ -35,7 +35,7 @@ const HighestRating = () => {
     const nameOfRoomWithHighestRating = roomWithHighestRating ? roomWithHighestRating.name : 'No room found';
 
     return (
-        <div className="border-2 border-white bg-white rounded-xl p-5" style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+        <div className="border-2 h-[270px] border-white bg-white rounded-xl p-5" style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
             <div>
                 <Typography fontSize={"h6"} style={{ color: 'lightslategrey' }}>
                     Highest Rating
