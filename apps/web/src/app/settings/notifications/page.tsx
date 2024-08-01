@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Notifications = () => {
+const NotificationsSettings = () => {
   return (
-    <div>Notifications</div>
+    <div>NotificationsSettings</div>
   )
 }
 
-export default Notifications
+export default NotificationsSettings

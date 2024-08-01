@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Input from "../Input";
 import Link from "next/link";
 import SubmitButton from "../SubmitButton";
@@ -9,6 +9,7 @@ const Login = ({ csrfToken }: { csrfToken: any }) => {
   const router = useRouter();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState<string | null>(null);
   
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -20,6 +21,8 @@ const Login = ({ csrfToken }: { csrfToken: any }) => {
 
     if(result?.ok) {
       router.push("/");
+    } else {
+      // setError()
     }
   };
 

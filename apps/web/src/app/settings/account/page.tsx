@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Account = () => {
+const AccountSettings = () => {
   return (
-    <div>Account</div>
+    <div>AccountSettings</div>
   )
 }
 
-export default Account
+export default AccountSettings

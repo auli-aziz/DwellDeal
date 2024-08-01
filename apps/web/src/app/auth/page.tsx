@@ -15,7 +15,7 @@ const Auth = () => {
           className="w-full h-full object-cover object-right-top"
         />
       </section>
-      <section className="bg-gradient-to-l from-neutral via-neutral to-transparent absolute h-screen right-0 md:w-[1000px] lg:w-[1100px] hidden sm:block">
+      <section className="bg-gradient-to-l from-neutral via-neutral to-transparent absolute h-screen right-0 md:w-[1000px] lg:w-[1300px] hidden sm:block">
         <div className="flex justify-end h-full w-full px-10 pb-10 pt-16">
           <AuthCard />
         </div>
