@@ -27,7 +27,7 @@ const DataCard = (props: DataCardProps) => {
               <InfoOutlinedIcon />
             </IconButton>
           </Tooltip>
-        </div><Typography variant="h3" color={"#565151"} className="font-montserrat font-semibold">{value}</Typography>
+        </div><Typography variant="h4" color={"#565151"} className="font-montserrat font-semibold">{value}</Typography>
         
       </div>
     );

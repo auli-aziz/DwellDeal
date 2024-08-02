@@ -11,7 +11,9 @@ def main():
         print(f"Error decoding JSON: {e}", file=sys.stderr)
         sys.exit(1)
 
+    prices_name = [{'name': items['title'], 'price': items['currentPrice']} for items in data]
     prices = [items['currentPrice'] for items in data]
+    ratings_name = [{'name': items['title'], 'rating': items['rating']} for items in data]
     ratings = [items['rating'] for items in data]
     gender = [items['gender'] for items in data]
 
@@ -27,12 +29,14 @@ def main():
         if gen in gender_count :
             gender_count[gen] += 1;
     
-    gender_proportion = {key: value / total_rooms for key, value in gender_count.items()}
+    gender_count_list = [{'name': key, 'count': value} for key, value in gender_count.items()]
 
 
     # Create a dictionary with the data you want to return
     response = {
+        "prices_name": prices_name,
         "prices": prices,
+        "ratings_name": ratings_name,
         "ratings": ratings,
         "highest_price": highest_price,
         "lowest_price": lowest_price,
@@ -41,6 +45,7 @@ def main():
         "highest_rating": highest_rating,
         "total_rooms": total_rooms,
         "gender_count": gender_count,
+        "gender_count_list": gender_count_list,
         "received_data": data,
     }
     

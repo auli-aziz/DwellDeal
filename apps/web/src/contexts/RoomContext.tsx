@@ -3,7 +3,9 @@ import { fetchResults } from "@web/lib/utils/http";
 import { createContext, FormEvent, ReactNode, useState } from "react";
 
 export interface Result {
+  prices_name: { name: string; price: number }[];
   prices: number[];
+  ratings_name: { name: string; rating: number }[];
   ratings: number[];
   highest_price: number;
   lowest_price: number;
@@ -12,6 +14,7 @@ export interface Result {
   total_rooms: number;
   average_price: number;
   gender_count: { [key: string]: number };
+  gender_count_list: { name: string; count: number }[];
   received_data: any[]
 }
 
@@ -66,7 +69,9 @@ export const RoomProvider = ({ children }: { children: ReactNode }) => {
 export const RoomProvider = ({ children }: { children: ReactNode }) => {
   const [keyword, setKeyword] = useState<string>("");
   const [result, setResult] = useState<Result>({
+    prices_name: [],
     prices: [],
+    ratings_name: [],
     ratings: [],
     highest_price: 0,
     lowest_price: 0,
@@ -75,6 +80,7 @@ export const RoomProvider = ({ children }: { children: ReactNode }) => {
     highest_rating: 0,
     total_rooms: 0,
     gender_count: {},
+    gender_count_list: [],
     received_data: []
   });
   const { fetchData, isLoading, error } = useFetch(() => fetchResults(keyword));
