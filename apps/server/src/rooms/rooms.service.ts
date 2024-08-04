@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import { BadRequestException, Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RoomInterface } from '@server/models/room.model';
+import { RoomInterface } from '@server/rooms/room.model';
 import { LinkDto } from '@server/utils/dto';
 import puppeteer from 'puppeteer';
 import { site } from '@server/utils/constants';

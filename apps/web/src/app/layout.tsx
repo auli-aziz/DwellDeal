@@ -3,6 +3,7 @@ import { Montserrat, Averia_Libre, Shanti } from "next/font/google";
 import "./globals.css";
 import Navbar from "@web/components/Navbar";
 import Footer from "@web/components/Footer";
+import Providers from "@web/components/SessionProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -38,11 +39,13 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.variable} ${averia.variable} ${shanti.variable}`}
     >
-      <body className="border-0 w-full h-fit">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <Providers>
+        <body className="border-0 w-full h-fit">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </Providers>
     </html>
   );
 }

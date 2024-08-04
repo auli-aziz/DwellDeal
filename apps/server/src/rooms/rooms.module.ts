@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from '@nestjs/mongoose';
-import Room from "../models/room.model";
+import Room from "./room.model";
 import { RoomsController } from "./rooms.controller";
 import { RoomsService } from "./rooms.service";
 
