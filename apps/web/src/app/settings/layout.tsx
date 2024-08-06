@@ -5,7 +5,7 @@ export default function SettingsLayout({ children }: { children: ReactNode}) {
   return (
     <div className="flex">
       <SideBar />
-      <section className="flex items-center justify-center">{children}</section>
+      <section className="w-full flex items-center justify-center">{children}</section>
     </div>
   );
 }

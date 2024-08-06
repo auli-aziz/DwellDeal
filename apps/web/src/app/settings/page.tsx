@@ -10,11 +10,11 @@ const AccountSettings = async () => {
 
   return (
     <>
-      <div className="flex gap-5 border-2 border-black">
+      <div className="flex gap-5">
         <IoPersonCircleSharp className="text-primary text-[195px]" />
-        <div className="flex flex-col justify-center border-2 border-black">
-          <h3>{session?.user.sub.name}</h3>
-          <p>{session?.user.email}</p>
+        <div className="w-[600px] flex flex-col gap-3 justify-center text-dark">
+          <h3 className="font-bold text-5xl">{session?.user.sub.name}</h3>
+          <p className="font-thin text-xl">{session?.user.email}</p>
         </div>
       </div>
       <div></div>
