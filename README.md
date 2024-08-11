@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/61dedf73-ef35-4702-a1f4-23370c67b000" alt="logo2" style="width: 400px; height: 100px; object-fit: contain;">
+  <img src="https://github.com/user-attachments/assets/61dedf73-ef35-4702-a1f4-23370c67b000" alt="logo2" style="width: 480px; height: 100px; object-fit: contain;">
 </p>
 
 **Find the Best Rental Prices Across Popular Websites with Ease!**
