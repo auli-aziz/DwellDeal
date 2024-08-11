@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/61dedf73-ef35-4702-a1f4-23370c67b000" alt="logo2" style="width: 300px; height: 100px; object-fit: contain;">
+  <img src="https://github.com/user-attachments/assets/61dedf73-ef35-4702-a1f4-23370c67b000" alt="logo2" style="width: 400px; height: 100px; object-fit: contain;">
 </p>
 
 **Find the Best Rental Prices Across Popular Websites with Ease!**
@@ -40,11 +40,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Stay in touch
 
 - Author:
-  - [Aulia A Aziz](https://github.com/auli-aziz) 
+  - [Aziz](https://github.com/auli-aziz) 
 - Contributors:
   - [Nasya](https://github.com/Nsyay) 
   - [Valtrizt](https://github.com/valuin)
 
-## License
-
-Nest is [MIT licensed](LICENSE).
