@@ -44,20 +44,25 @@ export class RoomsService {
       py.stdin.end();
       
       const result = new Promise((resolve, reject) => {
-        let output: any;
+        let output = '';
         py.stdout.on('data', (data) => {
-          output = JSON.parse(data);
+          output += data.toString();
         });
 
-        // Handle erros
+        // Handle errors
         py.stderr.on('data', (data) => {
-          console.error(`[python] Error occured: ${data}`);
-          reject(`Error occured`);
+          console.error(`[python] Error occurred: ${data}`);
+          reject(`Error occurred`);
         });
 
         py.on('exit', (code) => {
           console.log(`Child process exited with code ${code}`);
-          resolve(output);
+          try {
+            const parsedOutput = JSON.parse(output);
+            resolve(parsedOutput);
+          } catch (error) {
+            reject(`Failed to parse JSON: ${error.message}`);
+          }
         });
       });
 
