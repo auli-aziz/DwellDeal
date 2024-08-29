@@ -1,4 +1,3 @@
-# your code :>
 import sys
 import json
 
